@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { Hero } from '@/components/sections/Hero';
@@ -74,5 +75,31 @@ const Index = () => {
                 text: "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations."
               },
               {
-                name: "Sarah M.",
-                text: "I'm blown away by the quality and style of the clothes I received from Shop.
+                name: "Alex T.",
+                text: "The customer service at Shop.co is unmatched! When I had an issue with sizing, they were quick to respond and made the exchange process seamless and hassle-free."
+              },
+              {
+                name: "Jordan K.",
+                text: "I've been shopping at Shop.co for years and have never been disappointed. Their collection is always on trend, and the quality keeps me coming back for more."
+              },
+              {
+                name: "Taylor B.",
+                text: "As someone who values sustainability, I appreciate Shop.co's commitment to ethical fashion. Plus, their clothes are stylish, comfortable, and durable!"
+              }
+            ].map((testimonial, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+                <p className="text-gray-700 italic mb-4">{testimonial.text}</p>
+                <p className="text-right font-semibold">{testimonial.name}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Newsletter />
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default Index;
