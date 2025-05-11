@@ -1,111 +1,111 @@
+
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
+  const [email, setEmail] = React.useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Newsletter subscription:', email);
+  };
+
   return (
-    <footer className="bg-[rgba(217,32,48,1)] flex w-full max-w-[1438px] flex-col overflow-hidden items-stretch pt-20 pb-6">
-      <div className="w-full max-w-[1272px] mr-[33px] max-md:max-w-full max-md:mr-2.5">
-        <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
-          <div className="w-[82%] max-md:w-full">
-            <div className="flex gap-[40px_87px] text-neutral-50 justify-center flex-wrap max-md:max-w-full max-md:mt-10">
-              <div className="flex flex-col items-stretch w-[217px]">
-                <div>
-                  <div className="w-[118px] max-w-full whitespace-nowrap">
-                    <div className="text-neutral-50 w-full text-2xl font-bold tracking-[0.72px] leading-none">
-                      Exclusive
-                    </div>
-                    <div className="text-neutral-50 text-xl font-medium leading-[1.4] mt-6">
-                      Subscribe
-                    </div>
-                  </div>
-                  <div className="text-neutral-50 text-base font-normal mt-6">
-                    Get 10% off your first order
-                  </div>
-                </div>
-                <div className="items-center rounded border-[color:var(--Text,#FAFAFA)] flex max-w-full w-[217px] gap-8 text-base font-normal mt-4 pl-4 py-3 border-[1.5px] border-solid">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="text-neutral-50 opacity-40 self-stretch my-auto bg-transparent outline-none"
-                  />
-                  <img src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/98231e33944eaca641aa23f2dd2fb6bdc23b476e?placeholderIfAbsent=true" className="aspect-[1] object-contain w-6 self-stretch shrink-0 my-auto" alt="Send" />
-                </div>
-              </div>
-
-              <div className="w-[175px]">
-                <h3 className="text-neutral-50 text-xl font-medium leading-[1.4]">
-                  Support
-                </h3>
-                <address className="max-w-full w-[175px] text-base font-normal mt-6 not-italic">
-                  <div className="text-neutral-50 text-[15px] leading-6">
-                    1, Khan Road Mankundu<br />
-                    Hooghly - 720012
-                  </div>
-                  <div className="text-neutral-50 mt-4">
-                    xyzabcgmail.com
-                  </div>
-                  <div className="text-neutral-50 mt-4">
-                    +91015-8436-9999
-                  </div>
-                </address>
-              </div>
-
-              <nav className="space-y-4">
-                <h3 className="text-neutral-50 text-xl font-medium leading-[1.4]">
-                  Account
-                </h3>
-                <ul className="text-base font-normal mt-6 space-y-4">
-                  <li><a href="#" className="text-neutral-50">My Account</a></li>
-                  <li><a href="#" className="text-neutral-50">Login / Register</a></li>
-                  <li><a href="#" className="text-neutral-50">Cart</a></li>
-                  <li><a href="#" className="text-neutral-50">Wishlist</a></li>
-                  <li><a href="#" className="text-neutral-50">Shop</a></li>
-                </ul>
-              </nav>
-
-              <nav className="space-y-4">
-                <h3 className="text-neutral-50 text-xl font-medium leading-[1.4]">
-                  Quick Link
-                </h3>
-                <ul className="text-base font-normal mt-6 space-y-4">
-                  <li><a href="#" className="text-neutral-50">Privacy Policy</a></li>
-                  <li><a href="#" className="text-neutral-50">Terms Of Use</a></li>
-                  <li><a href="#" className="text-neutral-50">FAQ</a></li>
-                  <li><a href="#" className="text-neutral-50">Contact</a></li>
-                </ul>
-              </nav>
-            </div>
+    <footer className="bg-[#D92030] w-full text-white">
+      <div className="max-w-[1200px] mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Exclusive Column */}
+          <div>
+            <h3 className="text-2xl font-bold mb-4">Exclusive</h3>
+            <h4 className="text-lg font-medium mb-4">Subscribe</h4>
+            <p className="mb-4">Get 10% off your first order</p>
+            <form onSubmit={handleSubmit} className="flex border border-white rounded mb-2">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="bg-transparent text-white p-2 w-full outline-none placeholder-white placeholder-opacity-40"
+              />
+              <button type="submit" className="p-2">
+                <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.25 9H18.75" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M11.25 1.5L18.75 9L11.25 16.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </form>
           </div>
 
-          <div className="w-[18%] ml-5 max-md:w-full max-md:ml-0">
-            <div className="flex gap-6 self-stretch my-auto max-md:mt-10">
-              <a href="#" aria-label="Facebook">
-                <img src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/c583f579fa1cb68d5283489243accb132e230c69?placeholderIfAbsent=true" className="aspect-[1] object-contain w-[30px] shrink-0" alt="Facebook" />
-              </a>
-              <a href="#" aria-label="Twitter">
-                <div className="flex w-[30px] shrink-0 h-[30px]" />
-              </a>
-              <a href="#" aria-label="Instagram">
-                <div className="flex w-[30px] shrink-0 h-[30px]" />
-              </a>
-              <a href="#" aria-label="LinkedIn">
-                <img src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/804bd789114468e95d382d84f5008a8057781c27?placeholderIfAbsent=true" className="aspect-[1] object-contain w-[30px] shrink-0" alt="LinkedIn" />
-              </a>
-            </div>
+          {/* Support Column */}
+          <div>
+            <h3 className="text-xl font-medium mb-6">Support</h3>
+            <address className="not-italic">
+              <p className="mb-4">1, Khan Road Mankundu<br />Hooghly - 720012</p>
+              <p className="mb-4">xyzabcgmail.com</p>
+              <p className="mb-4">+91015-8436-9999</p>
+            </address>
+          </div>
+
+          {/* Account Column */}
+          <div>
+            <h3 className="text-xl font-medium mb-6">Account</h3>
+            <ul className="space-y-4">
+              <li><Link to="/account" className="hover:underline">My Account</Link></li>
+              <li><Link to="/login" className="hover:underline">Login / Register</Link></li>
+              <li><Link to="/cart" className="hover:underline">Cart</Link></li>
+              <li><Link to="/wishlist" className="hover:underline">Wishlist</Link></li>
+              <li><Link to="/shop" className="hover:underline">Shop</Link></li>
+            </ul>
+          </div>
+
+          {/* Quick Link Column */}
+          <div>
+            <h3 className="text-xl font-medium mb-6">Quick Link</h3>
+            <ul className="space-y-4">
+              <li><Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="hover:underline">Terms Of Use</Link></li>
+              <li><Link to="/faq" className="hover:underline">FAQ</Link></li>
+              <li><Link to="/contact" className="hover:underline">Contact</Link></li>
+            </ul>
           </div>
         </div>
-      </div>
 
-      <div className="flex w-full flex-col items-center mt-[60px] max-md:max-w-full max-md:mt-10">
-        <div className="w-full">
-          <div className="opacity-40 border bg-white shrink-0 h-px border-white border-solid" />
-        </div>
-        <div className="flex items-center gap-3 text-base text-white font-normal mt-4">
-          <div className="self-stretch flex min-w-60 items-center gap-1.5 my-auto">
-            <div className="self-stretch flex w-5 shrink-0 h-5 my-auto">©</div>
-            <div className="text-white self-stretch my-auto">
-              Copyright ZIXX. All right reserved
-            </div>
+        {/* Social Media */}
+        <div className="flex justify-end mt-8 mb-10">
+          <div className="flex gap-4">
+            <a href="#" aria-label="Facebook" className="hover:opacity-80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="#" aria-label="Twitter" className="hover:opacity-80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram" className="hover:opacity-80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="#" aria-label="LinkedIn" className="hover:opacity-80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
           </div>
+        </div>
+
+        {/* Footer Divider */}
+        <div className="border-t border-white opacity-40 my-4"></div>
+        
+        {/* Copyright */}
+        <div className="flex justify-center items-center">
+          <span>© Copyright ZIXX. All right reserved</span>
         </div>
       </div>
     </footer>

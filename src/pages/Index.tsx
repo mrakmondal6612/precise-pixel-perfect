@@ -6,10 +6,14 @@ import { NewArrivals } from '@/components/sections/NewArrivals';
 import { Categories } from '@/components/sections/Categories';
 import { Newsletter } from '@/components/sections/Newsletter';
 import { Footer } from '@/components/layout/Footer';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
+  const isMobile = useIsMobile();
+  
   return (
-    <div className="flex flex-col overflow-hidden items-center bg-white pb-10">
+    <div className="flex flex-col overflow-hidden items-center bg-white">
       <Header />
       <main className="w-full max-w-[1440px] flex flex-col items-center">
         <Hero />
@@ -64,32 +68,52 @@ const Index = () => {
         </section>
 
         {/* Testimonials Section */}
-        <section className="w-full px-4 md:px-8">
-          <h2 className="text-black text-5xl font-bold mt-[60px] text-center max-md:text-[40px] max-md:mt-10">
+        <section className="w-full px-4 md:px-8 py-12 bg-white">
+          <h2 className="text-black text-4xl md:text-5xl font-bold text-center mb-10 uppercase">
             OUR HAPPY CUSTOMERS
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1200px] mx-auto">
             {[
               {
                 name: "Sarah M.",
-                text: "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations."
+                text: "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.",
+                verified: true
               },
               {
-                name: "Alex T.",
-                text: "The customer service at Shop.co is unmatched! When I had an issue with sizing, they were quick to respond and made the exchange process seamless and hassle-free."
+                name: "Sarah M.",
+                text: "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.",
+                verified: true
               },
               {
-                name: "Jordan K.",
-                text: "I've been shopping at Shop.co for years and have never been disappointed. Their collection is always on trend, and the quality keeps me coming back for more."
+                name: "Alex K.",
+                text: "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
+                verified: true
               },
               {
-                name: "Taylor B.",
-                text: "As someone who values sustainability, I appreciate Shop.co's commitment to ethical fashion. Plus, their clothes are stylish, comfortable, and durable!"
+                name: "James L.",
+                text: "As someone who's always looking for unique fashion pieces, I stumbled upon Shop.co and was impressed. Their collection of clothes is not only diverse but also keeps up with the latest trends.",
+                verified: true
               }
             ].map((testimonial, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-                <p className="text-gray-700 italic mb-4">{testimonial.text}</p>
-                <p className="text-right font-semibold">{testimonial.name}</p>
+              <div key={index} className="bg-white p-6 border border-gray-100 rounded-lg shadow-sm">
+                <div className="flex items-center mb-2">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                  ))}
+                </div>
+                <div className="flex items-center mb-4">
+                  <h3 className="text-lg font-semibold">{testimonial.name}</h3>
+                  {testimonial.verified && (
+                    <span className="ml-2 bg-green-500 rounded-full h-4 w-4 flex items-center justify-center">
+                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    </span>
+                  )}
+                </div>
+                <p className="text-sm text-gray-700">{testimonial.text}</p>
               </div>
             ))}
           </div>
