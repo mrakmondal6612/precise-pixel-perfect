@@ -1,5 +1,7 @@
 # Welcome to your Lovable project
 
+**Click**: https://preview--precise-pixel-perfect.lovable.app/ 
+
 ## Project info
 
 **URL**: https://lovable.dev/projects/f380149f-d7fb-4d24-a34e-b6b18d9dfa25
