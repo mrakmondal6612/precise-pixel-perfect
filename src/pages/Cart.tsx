@@ -85,8 +85,8 @@ const Cart = () => {
                 <div className="space-y-6 mb-8">
                   {cartItems.map((item) => (
                     <div key={item.id} className="flex flex-col sm:flex-row gap-4 border-b pb-6">
-                      <div className="w-full sm:w-24 h-24 bg-gray-100 flex-shrink-0">
-                        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                      <div className="w-full sm:w-24 h-auto aspect-square bg-gray-100 flex-shrink-0">
+                        <img src={item.image} alt={item.name} className="w-full h-full object-contain" />
                       </div>
                       
                       <div className="flex-grow space-y-2">
