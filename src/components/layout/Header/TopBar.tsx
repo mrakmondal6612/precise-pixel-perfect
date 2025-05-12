@@ -29,8 +29,8 @@ export const TopBar = () => {
           </button>
         )}
 
-        {/* Main navigation */}
-        <nav className={`${isMobile && !mobileMenuOpen ? 'hidden' : 'flex'} ${isMobile ? 'absolute top-[41px] left-0 right-0 bg-[rgba(34,40,40,1)] z-50 flex-col' : 'static flex-row'} items-stretch text-sm text-white font-bold text-center uppercase`}>
+        {/* Main navigation - shifted to left */}
+        <nav className={`${isMobile && !mobileMenuOpen ? 'hidden' : 'flex'} ${isMobile ? 'absolute top-[41px] left-0 right-0 bg-[rgba(34,40,40,1)] z-50 flex-col' : 'static flex-row'} items-stretch text-sm text-white font-bold text-center uppercase ml-0`}>
           <Link 
             to="/"
             className={`leading-loose w-[70px] md:w-[114px] px-px border-x-[1px] border-x-[#52505] border-solid ${activeTab === 'women' ? 'text-white underline' : 'text-white'}`}

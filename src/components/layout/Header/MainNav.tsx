@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu } from 'lucide-react';
+import { Menu, User, ShoppingCart } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
   NavigationMenu,
@@ -31,6 +31,7 @@ export const MainNav = () => {
 
   // Check if current route is cart to highlight the cart icon
   const isCartPage = location.pathname === '/cart';
+  const isWishlistPage = location.pathname === '/wishlist';
 
   return (
     <>
@@ -142,14 +143,10 @@ export const MainNav = () => {
             </form>
             
             <div className="flex gap-3.5 items-center">
-              <Link to="/account" aria-label="User account">
-                <img 
-                  src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/97301dab40dc819ef659872c1b3cc1eb4fd0e9f2?placeholderIfAbsent=true" 
-                  className="aspect-[1] object-contain w-6 shrink-0 hover:opacity-80 transition-opacity" 
-                  alt="Account" 
-                />
+              <Link to="/account" aria-label="User account" className={location.pathname === '/account' ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
+                <User size={24} className="hover:opacity-80 transition-opacity" />
               </Link>
-              <Link to="/wishlist" aria-label="Wishlist">
+              <Link to="/wishlist" aria-label="Wishlist" className={isWishlistPage ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
                 <img 
                   src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/ac715f0dd7f9aaef44ddb1306739d29ec63e93de?placeholderIfAbsent=true" 
                   className="aspect-[1] object-contain w-6 shrink-0 hover:opacity-80 transition-opacity" 
@@ -157,11 +154,7 @@ export const MainNav = () => {
                 />
               </Link>
               <Link to="/cart" aria-label="Shopping cart" className={isCartPage ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
-                <img 
-                  src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/6b5e3f50c44bce7c8563de675dc18441131747a3?placeholderIfAbsent=true" 
-                  className={`aspect-[1] object-contain w-6 shrink-0 hover:opacity-80 transition-opacity ${isCartPage ? 'opacity-70' : ''}`}
-                  alt="Cart" 
-                />
+                <ShoppingCart size={24} className={`hover:opacity-80 transition-opacity ${isCartPage ? 'opacity-70' : ''}`} />
               </Link>
             </div>
           </div>
@@ -205,11 +198,7 @@ export const MainNav = () => {
             </li>
             <li className="flex gap-4 mt-4 justify-around">
               <Link to="/account" aria-label="User account" className="flex flex-col items-center">
-                <img 
-                  src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/97301dab40dc819ef659872c1b3cc1eb4fd0e9f2?placeholderIfAbsent=true" 
-                  className="aspect-[1] object-contain w-6 mb-1" 
-                  alt="Account" 
-                />
+                <User size={24} className="mb-1" />
                 <span className="text-sm">Account</span>
               </Link>
               <Link to="/wishlist" aria-label="Wishlist" className="flex flex-col items-center">
@@ -221,11 +210,7 @@ export const MainNav = () => {
                 <span className="text-sm">Wishlist</span>
               </Link>
               <Link to="/cart" aria-label="Shopping cart" className={`flex flex-col items-center ${isCartPage ? 'text-[#D92030]' : ''}`}>
-                <img 
-                  src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/6b5e3f50c44bce7c8563de675dc18441131747a3?placeholderIfAbsent=true" 
-                  className="aspect-[1] object-contain w-6 mb-1" 
-                  alt="Cart" 
-                />
+                <ShoppingCart size={24} className="mb-1" />
                 <span className="text-sm">Cart</span>
               </Link>
             </li>
