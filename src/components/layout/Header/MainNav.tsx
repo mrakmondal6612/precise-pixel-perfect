@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
@@ -15,6 +15,7 @@ import { cn } from '@/lib/utils';
 
 export const MainNav = () => {
   const isMobile = useIsMobile();
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchText, setSearchText] = useState('');
   
@@ -27,6 +28,9 @@ export const MainNav = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  // Check if current route is cart to highlight the cart icon
+  const isCartPage = location.pathname === '/cart';
 
   return (
     <>
@@ -152,10 +156,10 @@ export const MainNav = () => {
                   alt="Wishlist" 
                 />
               </Link>
-              <Link to="/cart" aria-label="Shopping cart">
+              <Link to="/cart" aria-label="Shopping cart" className={isCartPage ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
                 <img 
                   src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/6b5e3f50c44bce7c8563de675dc18441131747a3?placeholderIfAbsent=true" 
-                  className="aspect-[1] object-contain w-6 shrink-0 hover:opacity-80 transition-opacity" 
+                  className={`aspect-[1] object-contain w-6 shrink-0 hover:opacity-80 transition-opacity ${isCartPage ? 'opacity-70' : ''}`}
                   alt="Cart" 
                 />
               </Link>
@@ -216,7 +220,7 @@ export const MainNav = () => {
                 />
                 <span className="text-sm">Wishlist</span>
               </Link>
-              <Link to="/cart" aria-label="Shopping cart" className="flex flex-col items-center">
+              <Link to="/cart" aria-label="Shopping cart" className={`flex flex-col items-center ${isCartPage ? 'text-[#D92030]' : ''}`}>
                 <img 
                   src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/6b5e3f50c44bce7c8563de675dc18441131747a3?placeholderIfAbsent=true" 
                   className="aspect-[1] object-contain w-6 mb-1" 

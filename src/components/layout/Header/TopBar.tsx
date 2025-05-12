@@ -1,27 +1,31 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Menu } from 'lucide-react';
 
 export const TopBar = () => {
-  const [activeTab, setActiveTab] = useState('women');
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState(() => {
+    if (location.pathname.includes('/men')) return 'men';
+    if (location.pathname.includes('/kids')) return 'kids';
+    return 'women';
+  });
+  
   const isMobile = useIsMobile();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="bg-[rgba(34,40,40,1)] flex h-[41px] w-full flex-col items-stretch justify-center px-3 md:px-6 lg:px-[395px]">
+    <div className="bg-[rgba(34,40,40,1)] flex h-[41px] w-full flex-col items-stretch justify-center px-3 md:px-6 lg:px-20">
       <div className="flex min-h-[45px] w-full items-center gap-2 md:gap-5 justify-between">
         {/* Mobile menu toggle */}
         {isMobile && (
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-white p-1"
+            aria-label="Toggle mobile menu"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
+            <Menu size={24} />
           </button>
         )}
 
@@ -59,7 +63,7 @@ export const TopBar = () => {
           </Link>
         </nav>
         
-        <div className="z-10 flex items-center gap-1 md:gap-2.5 text-white">
+        <div className="z-10 ml-auto flex items-center gap-1 md:gap-2.5 text-white">
           <div className="flex items-center gap-1 md:gap-[5px] text-xs md:text-sm font-bold whitespace-nowrap leading-[1.1]">
             <img src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/c20d732439d086a64aed116707cf0bd74a991145?placeholderIfAbsent=true" className="aspect-[0.56] object-contain w-2 md:w-2.5 shrink-0" alt="Location icon" />
             <div className="text-white text-xs md:text-sm font-bold leading-[15.4px]">
