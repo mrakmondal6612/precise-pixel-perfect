@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductCard = ({ image, title, category, price }) => {
   return (
-    <div className="w-full bg-white mx-auto pb-[7px] max-md:mt-[15px]">
+    <div className="w-full bg-white mx-auto pb-[17px] max-md:mt-[15px]">
       <div className="bg-[rgba(255,235,231,1)] flex items-center justify-center max-md:mr-[5px]">
         <img
           src={image}
@@ -58,7 +58,7 @@ export const NewArrivals = () => {
       <h2 className="text-[#222828] text-center text-[28px] font-bold leading-[35px] mb-8">
         New Arrivals
       </h2>
-      <div className="self-stretch flex w-full flex-col items-stretch pl-[72px] max-md:pl-5">
+      <div className="self-stretch flex w-full flex-col items-stretch pl-[7px] max-md:pl-5">
         <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
           {products.map((product, index) => (
             <div key={index} className="w-3/12 max-md:w-full max-md:ml-0">

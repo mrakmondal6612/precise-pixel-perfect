@@ -5,7 +5,7 @@ import { Hero } from '@/components/sections/Hero';
 import { NewArrivals } from '@/components/sections/NewArrivals';
 import { Categories } from '@/components/sections/Categories';
 import { Newsletter } from '@/components/sections/Newsletter';
-import { Footer } from '@/components/layout/Footer';
+import { Footer } from '@/components/layout/Footer/Footer';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Link } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ const Index = () => {
   const isMobile = useIsMobile();
   
   return (
-    <div className="flex flex-col overflow-hidden items-center bg-white">
+    <div className="flex flex-col overflow-hidden items-center bg-white ">
       <Header />
       <main className="w-full max-w-[1440px] flex flex-col items-center">
         <Hero />
@@ -55,12 +55,17 @@ const Index = () => {
               />
             </div>
           </div>
-          <div className="max-w-[1080px] justify-center flex min-h-[345px] w-full gap-5 overflow-hidden flex-wrap ml-[19px] mt-24 py-[5px]">
-            {['https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/f3a59d3c18ef931719e92290738cf5332a8d0bb8?placeholderIfAbsent=true', 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/a3778de0b6fa7c76cfd3fcebbe3550413b4e6770?placeholderIfAbsent=true', 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/eb643d7fe0ae4338ccb6e5788c39e2bcd9311740?placeholderIfAbsent=true', 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/e0f1ccf92e2dce8c07fc31ea713741f0624b1ac9?placeholderIfAbsent=true'].map((url, index) => (
+          <div className="max-w-[1080px] justify-center flex min-h-[340px] w-full gap-6 overflow-hidden flex-wrap ml-[195px] mt-24 py-[5px]">
+            {[
+                'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/f3a59d3c18ef931719e92290738cf5332a8d0bb8?placeholderIfAbsent=true', 
+                'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/a3778de0b6fa7c76cfd3fcebbe3550413b4e6770?placeholderIfAbsent=true', 
+                'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/eb643d7fe0ae4338ccb6e5788c39e2bcd9311740?placeholderIfAbsent=true', 
+                'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/e0f1ccf92e2dce8c07fc31ea713741f0624b1ac9?placeholderIfAbsent=true'
+              ].map((url, index) => (
               <img
                 key={index}
                 src={url}
-                className="aspect-[0.75] object-contain w-[200px] rounded min-w-60 shrink grow"
+                className="aspect-[0.75] object-contain w-[250px] rounded min-w-60 shrink grow"
                 alt={`Hot Boy Fit item ${index + 1}`}
               />
             ))}
@@ -68,7 +73,7 @@ const Index = () => {
         </section>
 
         {/* Testimonials Section */}
-        <section className="w-full px-4 md:px-8 py-12 bg-white">
+        {/* <section className="w-full px-4 md:px-8 py-12 bg-white">
           <h2 className="text-black text-4xl md:text-5xl font-bold text-center mb-10 uppercase">
             OUR HAPPY CUSTOMERS
           </h2>
@@ -93,7 +98,8 @@ const Index = () => {
                 name: "James L.",
                 text: "As someone who's always looking for unique fashion pieces, I stumbled upon Shop.co and was impressed. Their collection of clothes is not only diverse but also keeps up with the latest trends.",
                 verified: true
-              }
+              },
+              
             ].map((testimonial, index) => (
               <div key={index} className="bg-white p-6 border border-gray-100 rounded-lg shadow-sm">
                 <div className="flex items-center mb-2">
@@ -117,9 +123,9 @@ const Index = () => {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
 
-        <Newsletter />
+        {/* <Newsletter /> */}
       </main>
       <Footer />
     </div>

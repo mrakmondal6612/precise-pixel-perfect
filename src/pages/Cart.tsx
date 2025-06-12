@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
+import { Footer } from '@/components/layout/Footer/Footer';
 import { Link } from 'react-router-dom';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';

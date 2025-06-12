@@ -1,9 +1,12 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Truck, Headphones, Shield, Star, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import Testimonials from './Testimonials';
+import Services from './Services';
+import Newsletter from './Newsletter';
 
 export const Footer = () => {
   const [email, setEmail] = React.useState('');
@@ -13,88 +16,17 @@ export const Footer = () => {
     console.log('Newsletter subscription:', email);
   };
 
-  const testimonials = [
-    {
-      name: "Sarah M.",
-      rating: 5,
-      text: "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations."
-    },
-    {
-      name: "Alex K.",
-      rating: 5,
-      text: "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions."
-    },
-    {
-      name: "James L.",
-      rating: 5,
-      text: "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends."
-    }
-  ];
-
-  const services = [
-    {
-      icon: Truck,
-      title: "FREE AND FAST DELIVERY",
-      description: "Free delivery for all orders over $140"
-    },
-    {
-      icon: Headphones,
-      title: "24/7 CUSTOMER SERVICE",
-      description: "Friendly 24/7 customer support"
-    },
-    {
-      icon: Shield,
-      title: "MONEY BACK GUARANTEE",
-      description: "We return money within 30 days"
-    }
-  ];
 
   return (
     <footer className="bg-background w-full">
       {/* Customer Testimonials Section */}
-      <div className="bg-background py-16">
-        <div className="max-w-[1200px] mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 text-foreground">OUR HAPPY CUSTOMERS</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className={`p-6 rounded-lg border ${index === 0 ? 'border-primary' : 'border-border'}`}>
-                <div className="flex mb-3">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <div className="flex items-center mb-3">
-                  <span className="font-semibold text-foreground">{testimonial.name}</span>
-                  <div className="w-5 h-5 bg-green-500 rounded-full ml-2 flex items-center justify-center">
-                    <span className="text-white text-xs">✓</span>
-                  </div>
-                </div>
-                <p className="text-muted-foreground">{testimonial.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <Testimonials />
 
       {/* Services Section */}
-      <div className="bg-background py-16">
-        <div className="max-w-[1200px] mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
-                  <service.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="font-bold text-foreground mb-2">{service.title}</h3>
-                <p className="text-muted-foreground">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <Services />
 
       {/* Newsletter Section */}
-      <div className="bg-black py-8">
+      {/* <div className="bg-black py-8">
         <div className="max-w-[1200px] mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-white">
@@ -103,6 +35,7 @@ export const Footer = () => {
             </div>
             <div className="flex flex-col gap-3 w-full md:w-auto">
               <div className="flex">
+                
                 <Input
                   type="email"
                   placeholder="Enter your email address"
@@ -120,7 +53,8 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+      <Newsletter />
 
       {/* Footer Links Section */}
       <div className="bg-[#D92030] w-full text-white">

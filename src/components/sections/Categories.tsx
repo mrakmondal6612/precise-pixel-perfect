@@ -21,7 +21,7 @@ export const Categories = () => {
         <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
           <div className="w-[23%] max-md:w-full">
             <div className="max-md:mt-10">
-              <div className="bg-[rgba(252,234,231,1)] flex min-h-[396px] flex-col overflow-hidden justify-center">
+              <div className="bg-[rgba(252,234,231,1)] flex min-h-[306px] flex-col overflow-hidden justify-center">
                 <img src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/9e77ed0a168b1cb473b7d2fbcb5c226196f8c854?placeholderIfAbsent=true" className="aspect-[1.06] object-contain w-[356px] max-w-[356px]" alt="Category 1" />
               </div>
               <div className="bg-[rgba(252,234,231,1)] flex min-h-[391px] flex-col overflow-hidden justify-center">
@@ -32,7 +32,7 @@ export const Categories = () => {
           
           <div className="w-[77%] ml-5 max-md:w-full max-md:ml-0">
             <div className="grow max-md:max-w-full max-md:mt-10">
-              <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
+              <div className="gap-0 flex max-md:flex-col max-md:items-stretch">
                 <div className="w-[34%] max-md:w-full">
                   <img src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/7c3ed2298e5c8d26f7034b398a0c69e0cb6970ed?placeholderIfAbsent=true" className="aspect-[0.47] object-contain w-full min-h-[396px] grow" alt="Category 3" />
                 </div>
@@ -44,7 +44,7 @@ export const Categories = () => {
                       'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/63fb3cd159653e4250bcad70c57622f2931e3ff2?placeholderIfAbsent=true',
                       'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/9cddc3286cde2fbb073d55d68426a432f23d092b?placeholderIfAbsent=true'
                     ].map((url, index) => (
-                      <div key={index} className="bg-[rgba(252,234,231,1)] flex min-h-[396px] flex-col overflow-hidden justify-center">
+                      <div key={index} className="bg-[rgba(252,234,231,1)] flex min-h-[306px] flex-col overflow-hidden justify-center">
                         <img src={url} className="aspect-[1.06] object-contain w-[356px] max-w-[356px]" alt={`Category ${index + 4}`} />
                       </div>
                     ))}

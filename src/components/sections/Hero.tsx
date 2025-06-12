@@ -16,7 +16,7 @@ export const Hero = () => {
   ];
 
   return (
-    <section className="flex flex-col relative min-h-[200px] md:min-h-[588px] w-full max-w-[1181px] items-center mt-[15px] md:mt-[33px] pt-[150px] md:pt-[556px] pb-[18px] px-[20px] md:px-[70px]">
+    <section className="flex flex-col relative min-h-[200px] md:min-h-[588px] w-full max-w-[1181rem] items-center mt-[15px] md:mt-[33px] pt-[150px] md:pt-[556px] pb-[18px] px-[20px] md:px-[70px]">
       <img
         src={bannerImages[currentSlide]}
         className="absolute h-full w-full object-cover inset-0"

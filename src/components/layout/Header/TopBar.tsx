@@ -16,7 +16,7 @@ export const TopBar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="bg-[rgba(34,40,40,1)] flex h-[41px] w-full flex-col items-stretch justify-center px-3 md:px-6 lg:px-20">
+    <div className="bg-[rgba(34,40,40,1)] flex h-[41px] w-full flex-col items-stretch justify-center px-3 md:px-6 lg:px-24">
       <div className="flex min-h-[45px] w-full items-center gap-2 md:gap-5 justify-between">
         {/* Mobile menu toggle */}
         {isMobile && (

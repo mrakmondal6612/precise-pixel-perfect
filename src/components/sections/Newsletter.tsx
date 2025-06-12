@@ -12,7 +12,7 @@ export const Newsletter = () => {
   return (
     <>
       {/* Features Section */}
-      <div className="w-full max-w-[1200px] px-4 py-10">
+      {/* <div className="w-full max-w-[1200px] px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center justify-center text-center">
           <div className="flex flex-col items-center">
             <div className="bg-gray-200 rounded-full p-6 w-20 h-20 flex items-center justify-center mb-4">
@@ -50,7 +50,7 @@ export const Newsletter = () => {
             <p className="text-sm">We return money within 30 days</p>
           </div>
         </div>
-      </div>
+      </div> */}
       
       {/* Newsletter Section */}
       <div className="w-full bg-[#222828] py-8 px-4 md:px-12 lg:px-16">
