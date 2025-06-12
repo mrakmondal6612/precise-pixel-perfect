@@ -1,3 +1,4 @@
+import { ArrowBigUpDashIcon } from 'lucide-react';
 import React from 'react'
 
 export default function Newsletter() {
@@ -8,8 +9,13 @@ export default function Newsletter() {
         console.log('Newsletter subscription:', email);
       };
   return (
-    <div className='  lg:px-16  '>
-      <div className="bg-[#222828] md:px-12 py-7 px-2 rounded-[2rem]">
+    <div className='lg:px-16  '>
+      <span className='pl-[88rem] absolute ...'>
+        <a href="#" aria-label="Instagram" className="hover:opacity-80">
+                <ArrowBigUpDashIcon className="w-6 h-6" />
+              </a>
+      </span>
+      <div className="bg-[#222828] md:px-12 py-8 px-2 rounded-[1.7rem]">
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8 ">
           <div className="text-white md:w-1/2">
             <h2 className="text-3xl md:text-4xl font-bold uppercase">STAY UPTO DATE ABOUT<br/>OUR LATEST OFFERS</h2>
