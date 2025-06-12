@@ -10,7 +10,6 @@ import Account from "./pages/Account";
 import Wishlist from "./pages/Wishlist";
 import Brands from "./pages/Brands";
 import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 import Logout from "./pages/Logout";
 import Women from "./pages/Women";
 import Men from "./pages/Men";
