@@ -83,8 +83,10 @@ const Men = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div>
       <Header />
+    <div className="flex flex-col min-h-screen bg-white">
+      
       
       <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 md:px-8 py-8">
         {/* Hero Banner */}
@@ -215,6 +217,7 @@ const Men = () => {
       </main>
       
       <Footer />
+    </div>
     </div>
   );
 };

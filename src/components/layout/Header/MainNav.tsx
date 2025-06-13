@@ -127,7 +127,7 @@ export const MainNav = () => {
               </NavigationMenuList>
             </NavigationMenu>
             
-            <form onSubmit={handleSearch} className="bg-[rgba(240,240,240,1)] flex min-w-[200px] md:min-w-[250px] lg:min-w-[300px] gap-3 overflow-hidden rounded-[62px] px-4 py-3">
+            <form onSubmit={handleSearch} className="bg-[rgba(240,240,240,1)] flex min-w-[200px] md:min-w-[250px] lg:min-w-[500px] gap-3 overflow-hidden rounded-[62px] px-4 py-3">
               <img 
                 src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/6b478e42f8403dc6f5eae99c7cf3bb374642f221?placeholderIfAbsent=true"
                 className="aspect-[1] object-contain w-5 shrink-0" 

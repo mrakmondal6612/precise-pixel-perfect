@@ -13,8 +13,9 @@ const Index = () => {
   const isMobile = useIsMobile();
   
   return (
-    <div className="flex flex-col overflow-hidden items-center bg-white ">
+    <div>
       <Header />
+    <div className="felx flex-col overflow-hidden items-center bg-white ">
       <main className="w-full max-w-[1440px] flex flex-col items-center">
         <Hero />
         <NewArrivals />
@@ -128,6 +129,7 @@ const Index = () => {
         {/* <Newsletter /> */}
       </main>
       <Footer />
+    </div>
     </div>
   );
 };
