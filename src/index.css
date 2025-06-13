@@ -87,11 +87,6 @@
 }
 
 @layer components {
-  /* Icon with rounded shadow styling */
-  .icon-shadow {
-    @apply bg-gray-100 rounded-full shadow-md p-2 hover:shadow-lg transition-shadow duration-300 w-8 h-8 flex items-center justify-center;
-  }
-
   /* Global hover zoom effect for product images */
   .product-image {
     @apply transition-transform duration-300 hover:scale-110;

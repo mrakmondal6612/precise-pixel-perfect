@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer/Footer';
@@ -129,9 +128,7 @@ const Cart = () => {
                               onClick={() => removeItem(item.id)}
                               className="flex items-center gap-2 text-red-600 hover:text-red-800 bg-red-50 hover:bg-red-100 px-3 py-1 rounded-lg transition-colors"
                             >
-                              <div className="icon-shadow">
-                                <Trash2 size={14} />
-                              </div>
+                              <Trash2 size={14} />
                               <span className="text-sm font-medium">Remove</span>
                             </button>
                           </div>
@@ -205,7 +202,7 @@ const Cart = () => {
                 
                 <div className="grid grid-cols-3 gap-4 border-t-2 pt-6">
                   <div className="text-center">
-                    <div className="icon-shadow mx-auto mb-2">
+                    <div className="mx-auto mb-2 w-8 h-8 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12h14M12 5v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
@@ -213,7 +210,7 @@ const Cart = () => {
                     <p className="text-xs font-medium">FREE FAST DELIVERY</p>
                   </div>
                   <div className="text-center">
-                    <div className="icon-shadow mx-auto mb-2">
+                    <div className="mx-auto mb-2 w-8 h-8 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         <path d="M9 9.35v5.3a.5.5 0 00.78.42l4.5-2.65a.5.5 0 000-.84l-4.5-2.65a.5.5 0 00-.78.42z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -222,7 +219,7 @@ const Cart = () => {
                     <p className="text-xs font-medium">24/7 CUSTOMER SERVICE</p>
                   </div>
                   <div className="text-center">
-                    <div className="icon-shadow mx-auto mb-2">
+                    <div className="mx-auto mb-2 w-8 h-8 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         <path d="M12 16v-4M12 8h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
