@@ -61,7 +61,6 @@ const Cart = () => {
   const applyPromoCode = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Applying promo code:', promoCode);
-    // Implementation for promo code logic would go here
   };
 
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -70,81 +69,87 @@ const Cart = () => {
   const total = subtotal + shipping + tax;
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-gray-50">
       <Header />
       
-      <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 md:px-8 pt-6 pb-16">
-        <h1 className="text-2xl font-bold mb-6">Shopping Cart</h1>
+      <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 md:px-8 pt-8 pb-16">
+        <h1 className="text-3xl font-bold mb-8 text-center">Shopping Cart</h1>
         
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Cart Items */}
           <div className="flex-grow">
             {cartItems.length > 0 ? (
               <>
-                {/* Cart Items List */}
-                <div className="space-y-6 mb-8">
-                  {cartItems.map((item) => (
-                    <div key={item.id} className="flex flex-col sm:flex-row gap-4 border-b pb-6">
-                      <div className="w-full sm:w-24 h-auto aspect-square bg-gray-100 flex-shrink-0">
-                        <img src={item.image} alt={item.name} className="w-full h-full object-contain" />
-                      </div>
-                      
-                      <div className="flex-grow space-y-2">
-                        <div className="flex justify-between">
-                          <h3 className="font-medium">{item.name}</h3>
-                          <div className="font-bold">${item.price.toFixed(2)}</div>
+                <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+                  <div className="space-y-6">
+                    {cartItems.map((item) => (
+                      <div key={item.id} className="flex flex-col sm:flex-row gap-4 border-b pb-6 last:border-b-0">
+                        <div className="w-full sm:w-32 h-32 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden">
+                          <img 
+                            src={item.image} 
+                            alt={item.name} 
+                            className="w-full h-full object-contain transition-transform duration-300 hover:scale-110" 
+                          />
                         </div>
                         
-                        <div className="text-sm text-gray-500">
-                          <p>Color: {item.color}</p>
-                          <p>Size: {item.size}</p>
-                        </div>
-                        
-                        <p className="text-sm">{item.delivery}</p>
-                        
-                        <div className="flex items-center justify-between pt-2">
-                          <div className="flex items-center gap-2 border rounded-md">
-                            <button 
-                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                              className="px-2 py-1 hover:bg-gray-100"
-                              aria-label="Decrease quantity"
-                            >
-                              <Minus size={16} />
-                            </button>
-                            <span className="px-2">{item.quantity}</span>
-                            <button 
-                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                              className="px-2 py-1 hover:bg-gray-100"
-                              aria-label="Increase quantity"
-                            >
-                              <Plus size={16} />
-                            </button>
+                        <div className="flex-grow space-y-3">
+                          <div className="flex justify-between">
+                            <h3 className="font-semibold text-lg">{item.name}</h3>
+                            <div className="font-bold text-lg text-[#D92030]">${item.price.toFixed(2)}</div>
                           </div>
                           
-                          <button 
-                            onClick={() => removeItem(item.id)}
-                            className="flex items-center gap-1 text-red-600 hover:text-red-800"
-                          >
-                            <Trash2 size={16} />
-                            <span className="text-sm">Remove</span>
-                          </button>
+                          <div className="text-sm text-gray-600 space-y-1">
+                            <p><span className="font-medium">Color:</span> {item.color}</p>
+                            <p><span className="font-medium">Size:</span> {item.size}</p>
+                          </div>
+                          
+                          <p className="text-sm text-green-600 font-medium">{item.delivery}</p>
+                          
+                          <div className="flex items-center justify-between pt-2">
+                            <div className="flex items-center gap-2 border-2 rounded-lg overflow-hidden">
+                              <button 
+                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                className="px-3 py-2 hover:bg-gray-100 transition-colors"
+                                aria-label="Decrease quantity"
+                              >
+                                <Minus size={16} />
+                              </button>
+                              <span className="px-4 py-2 font-medium">{item.quantity}</span>
+                              <button 
+                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                className="px-3 py-2 hover:bg-gray-100 transition-colors"
+                                aria-label="Increase quantity"
+                              >
+                                <Plus size={16} />
+                              </button>
+                            </div>
+                            
+                            <button 
+                              onClick={() => removeItem(item.id)}
+                              className="flex items-center gap-2 text-red-600 hover:text-red-800 bg-red-50 hover:bg-red-100 px-3 py-2 rounded-lg transition-colors"
+                            >
+                              <div className="w-5 h-5 bg-white rounded-full shadow-md flex items-center justify-center">
+                                <Trash2 size={12} />
+                              </div>
+                              <span className="text-sm font-medium">Remove</span>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
                 
-                <div className="text-right font-medium mb-8">
-                  Subtotal ({cartItems.length} items): ${subtotal.toFixed(2)}
+                <div className="text-right font-semibold text-lg mb-8 bg-white rounded-lg shadow-sm p-4">
+                  Subtotal ({cartItems.length} items): <span className="text-[#D92030]">${subtotal.toFixed(2)}</span>
                 </div>
-                
               </>
             ) : (
-              <div className="text-center py-16">
+              <div className="text-center py-16 bg-white rounded-lg shadow-sm">
                 <h2 className="text-2xl font-bold mb-4">Your cart is empty</h2>
                 <p className="mb-8 text-gray-600">It looks like you haven't added anything to your cart yet.</p>
                 <Link to="/">
-                  <Button>Continue Shopping</Button>
+                  <Button className="bg-[#D92030] hover:bg-[#BC1C2A]">Continue Shopping</Button>
                 </Link>
               </div>
             )}
@@ -152,77 +157,77 @@ const Cart = () => {
           
           {/* Order Summary */}
           {cartItems.length > 0 && (
-            <div className="lg:w-[350px] flex-shrink-0">
-              <div className="border rounded-lg p-6 bg-gray-50 sticky top-28">
-                <h2 className="font-bold text-lg mb-4">Order Summary</h2>
+            <div className="lg:w-[380px] flex-shrink-0">
+              <div className="bg-white rounded-lg shadow-lg p-6 sticky top-28">
+                <h2 className="font-bold text-xl mb-6">Order Summary</h2>
                 
-                <div className="space-y-3 mb-6">
+                <div className="space-y-4 mb-6">
                   <div className="flex justify-between">
                     <span>Subtotal</span>
-                    <span>${subtotal.toFixed(2)}</span>
+                    <span className="font-medium">${subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Shipping & Handling</span>
-                    <span>${shipping.toFixed(2)}</span>
+                    <span className="font-medium">${shipping.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Estimated Tax</span>
-                    <span>${tax.toFixed(2)}</span>
+                    <span className="font-medium">${tax.toFixed(2)}</span>
                   </div>
-                  <div className="border-t pt-3 flex justify-between font-bold">
+                  <div className="border-t-2 pt-4 flex justify-between font-bold text-lg">
                     <span>Total</span>
-                    <span>${total.toFixed(2)}</span>
+                    <span className="text-[#D92030]">${total.toFixed(2)}</span>
                   </div>
                 </div>
                 
                 <form onSubmit={applyPromoCode} className="mb-6">
-                  <div className="flex">
+                  <div className="flex gap-2">
                     <input
                       type="text"
                       placeholder="Enter promo code"
                       value={promoCode}
                       onChange={(e) => setPromoCode(e.target.value)}
-                      className="flex-grow px-4 py-2 border border-r-0 rounded-l-md focus:outline-none"
+                      className="flex-grow px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#D92030]"
                     />
                     <button
                       type="submit"
-                      className="bg-gray-200 text-gray-700 px-4 py-2 rounded-r-md hover:bg-gray-300"
+                      className="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-900 transition-colors font-medium"
                     >
                       Apply
                     </button>
                   </div>
                 </form>
                 
-                <Button className="w-full bg-[#D92030] hover:bg-[#BC1C2A] mb-4">
+                <Button className="w-full bg-[#D92030] hover:bg-[#BC1C2A] py-4 text-lg font-semibold rounded-lg mb-6">
                   Proceed to Checkout
                 </Button>
                 
-                <div className="flex justify-between items-center border-t pt-4 mt-6">
-                  <div className="flex-1 text-center">
-                    <div className="flex justify-center mb-2">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12h14M12 5v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <div className="grid grid-cols-3 gap-4 border-t-2 pt-6">
+                  <div className="text-center">
+                    <div className="w-10 h-10 bg-[#D92030] rounded-full shadow-lg flex items-center justify-center mx-auto mb-2">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14M12 5v14" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <p className="text-xs">FREE FAST DELIVERY</p>
+                    <p className="text-xs font-medium">FREE FAST DELIVERY</p>
                   </div>
-                  <div className="flex-1 text-center">
-                    <div className="flex justify-center mb-2">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M9 9.35v5.3a.5.5 0 00.78.42l4.5-2.65a.5.5 0 000-.84l-4.5-2.65a.5.5 0 00-.78.42z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <div className="text-center">
+                    <div className="w-10 h-10 bg-[#D92030] rounded-full shadow-lg flex items-center justify-center mx-auto mb-2">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M9 9.35v5.3a.5.5 0 00.78.42l4.5-2.65a.5.5 0 000-.84l-4.5-2.65a.5.5 0 00-.78.42z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <p className="text-xs">24/7 CUSTOMER SERVICE</p>
+                    <p className="text-xs font-medium">24/7 CUSTOMER SERVICE</p>
                   </div>
-                  <div className="flex-1 text-center">
-                    <div className="flex justify-center mb-2">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M12 16v-4M12 8h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <div className="text-center">
+                    <div className="w-10 h-10 bg-[#D92030] rounded-full shadow-lg flex items-center justify-center mx-auto mb-2">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M12 16v-4M12 8h.01" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <p className="text-xs">MONEY BACK GUARANTEE</p>
+                    <p className="text-xs font-medium">MONEY BACK GUARANTEE</p>
                   </div>
                 </div>
               </div>
@@ -232,8 +237,8 @@ const Cart = () => {
         
         {/* Top Selling Products Section */}
         <section className="mt-16">
-          <h2 className="text-2xl font-bold text-center mb-8">TOP SELLING</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          <h2 className="text-3xl font-bold text-center mb-12">TOP SELLING</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
             {[
               {
                 name: 'Vertical Striped Shirt',
@@ -257,14 +262,18 @@ const Cart = () => {
                 image: 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/323635352eed4542ef83c5e9d41e0f884d43499e?placeholderIfAbsent=true'
               }
             ].map((product, index) => (
-              <div key={index} className="bg-gray-50 p-4 rounded-lg">
+              <div key={index} className="bg-white rounded-lg shadow-sm p-4 hover:shadow-lg transition-shadow">
                 <Link to="/product" className="block">
-                  <div className="aspect-square bg-gray-100 mb-3">
-                    <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                  <div className="aspect-square bg-gray-100 mb-4 rounded-lg overflow-hidden">
+                    <img 
+                      src={product.image} 
+                      alt={product.name} 
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" 
+                    />
                   </div>
-                  <h3 className="text-sm font-medium">{product.name}</h3>
-                  <div className="flex items-center gap-2 mt-1">
-                    <div className="text-sm font-bold">${product.price}</div>
+                  <h3 className="text-sm font-semibold mb-2">{product.name}</h3>
+                  <div className="flex items-center gap-2">
+                    <div className="text-lg font-bold text-[#D92030]">${product.price}</div>
                     {product.oldPrice && (
                       <div className="text-sm text-gray-500 line-through">${product.oldPrice}</div>
                     )}

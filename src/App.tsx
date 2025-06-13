@@ -24,6 +24,10 @@ import Search from "./pages/Search";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import FAQ from "./pages/FAQ";
+import Clothes from "./pages/Clothes";
+import Accessories from "./pages/Accessories";
+import Collections from "./pages/Collections";
+import FeaturedCollection from "./pages/FeaturedCollection";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -57,6 +61,10 @@ const App = () => (
           <Route path="/terms" element={<TermsOfUse />} />
           <Route path="/terms-of-use" element={<TermsOfUse />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/clothes" element={<Clothes />} />
+          <Route path="/accessories" element={<Accessories />} />
+          <Route path="/collections" element={<Collections />} />
+          <Route path="/featured-collection" element={<FeaturedCollection />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
