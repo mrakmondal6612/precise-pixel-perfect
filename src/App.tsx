@@ -14,6 +14,16 @@ import Logout from "./pages/Logout";
 import Women from "./pages/Women";
 import Men from "./pages/Men";
 import Kids from "./pages/Kids";
+import Signup from "./pages/Signup";
+import Shop from "./pages/Shop";
+import OnSale from "./pages/OnSale";
+import NewArrivals from "./pages/NewArrivals";
+import Contact from "./pages/Contact";
+import TrackOrder from "./pages/TrackOrder";
+import Search from "./pages/Search";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfUse from "./pages/TermsOfUse";
+import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,9 +42,21 @@ const App = () => (
           <Route path="/brands" element={<Brands />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/register" element={<Signup />} />
           <Route path="/women" element={<Women />} />
           <Route path="/men" element={<Men />} />
           <Route path="/kids" element={<Kids />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/on-sale" element={<OnSale />} />
+          <Route path="/new-arrivals" element={<NewArrivals />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/track-order" element={<TrackOrder />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfUse />} />
+          <Route path="/terms-of-use" element={<TermsOfUse />} />
+          <Route path="/faq" element={<FAQ />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
