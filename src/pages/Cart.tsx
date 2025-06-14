@@ -333,7 +333,7 @@ const Cart = () => {
         </section>
 
         {/* OUR HAPPY CUSTOMERS Section */}
-        <section className="mt-16 bg-white rounded-lg p-8">
+{/*         <section className="mt-16 bg-white rounded-lg p-8">
           <h2 className="text-3xl font-bold text-center mb-12">OUR HAPPY CUSTOMERS</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -364,7 +364,7 @@ const Cart = () => {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
       </main>
       
       <Footer />
