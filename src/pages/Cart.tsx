@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer/Footer';
@@ -110,7 +109,7 @@ const Cart = () => {
                             <div className="flex items-center gap-0 border border-gray-300 rounded-lg overflow-hidden w-fit">
                               <button 
                                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                className="px-2 sm:px-3 py-1 hover:bg-gray-100 transition-colors btn-active"
+                                className="px-2 sm:px-3 py-1 hover:bg-gray-100 transition-colors text-gray-800"
                                 aria-label="Decrease quantity"
                               >
                                 <Minus size={14} />
@@ -118,7 +117,7 @@ const Cart = () => {
                               <span className="px-3 sm:px-4 py-1 font-medium border-x border-gray-300 text-sm">{item.quantity}</span>
                               <button 
                                 onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                className="px-2 sm:px-3 py-1 hover:bg-gray-100 transition-colors btn-active"
+                                className="px-2 sm:px-3 py-1 hover:bg-gray-100 transition-colors text-gray-800"
                                 aria-label="Increase quantity"
                               >
                                 <Plus size={14} />
@@ -127,7 +126,7 @@ const Cart = () => {
                             
                             <button 
                               onClick={() => removeItem(item.id)}
-                              className="flex items-center gap-2 text-red-600 hover:text-red-800 bg-red-50 hover:bg-red-100 px-3 py-1 rounded-lg transition-colors btn-active w-fit"
+                              className="flex items-center gap-2 text-red-600 hover:text-red-800 bg-red-50 hover:bg-red-100 px-3 py-1 rounded-lg transition-colors w-fit"
                             >
                               <Trash2 size={12} />
                               <span className="text-xs sm:text-sm font-medium">Remove</span>
@@ -148,7 +147,7 @@ const Cart = () => {
                 <h2 className="text-xl sm:text-2xl font-bold mb-4">Your cart is empty</h2>
                 <p className="mb-6 sm:mb-8 text-gray-600 text-sm sm:text-base">It looks like you haven't added anything to your cart yet.</p>
                 <Link to="/">
-                  <Button className="bg-[#D92030] hover:bg-[#BC1C2A] btn-active px-6 py-3">Continue Shopping</Button>
+                  <Button className="bg-[#D92030] hover:bg-[#BC1C2A] px-6 py-3">Continue Shopping</Button>
                 </Link>
               </div>
             )}
@@ -190,43 +189,43 @@ const Cart = () => {
                     />
                     <button
                       type="submit"
-                      className="bg-gray-800 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-900 transition-colors font-medium text-sm btn-active"
+                      className="bg-gray-800 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-900 transition-colors font-medium text-sm"
                     >
                       Apply
                     </button>
                   </div>
                 </form>
                 
-                <Button className="w-full bg-[#D92030] hover:bg-[#BC1C2A] py-3 text-sm sm:text-base font-semibold rounded-lg mb-4 sm:mb-6 btn-active">
+                <Button className="w-full bg-[#D92030] hover:bg-[#BC1C2A] py-3 text-sm sm:text-base font-semibold rounded-lg mb-4 sm:mb-6">
                   Proceed to Checkout
                 </Button>
                 
-                {/* Categories Section with Responsive Layout */}
+                {/* Categories Section with Separate Images */}
                 <div className="border-t-2 pt-4 sm:pt-6">
-                  <div className="responsive-grid-2 gap-4 mb-6">
-                    {/* Men's Category */}
-                    <div className="category-section h-32 sm:h-40">
+                  <div className="space-y-4 mb-6">
+                    {/* Men's Striped Shirt */}
+                    <div className="category-section h-40 sm:h-48">
                       <img 
-                        src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=300&h=200" 
-                        alt="Men's Fashion" 
+                        src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=400&h=300" 
+                        alt="Men's Striped Shirts" 
                         className="w-full h-full object-cover"
                       />
                       <div className="category-overlay">
-                        <h3 className="category-title text-sm sm:text-base">MEN'S</h3>
+                        <h3 className="category-title text-sm sm:text-base">MEN'S SHIRTS</h3>
                       </div>
                     </div>
                     
                     {/* Boxers & Shorts */}
-                    <div className="category-section h-32 sm:h-40">
+                    <div className="category-section h-40 sm:h-48">
                       <img 
-                        src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=300&h=200" 
+                        src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=400&h=300" 
                         alt="Boxers & Shorts" 
                         className="w-full h-full object-cover"
                       />
                       <div className="category-overlay">
                         <div className="text-center">
                           <p className="text-white text-xs font-medium mb-1">BOXERS & SHORTS</p>
-                          <ChevronDown className="text-white mx-auto" size={16} />
+                          <ChevronDown className="text-white mx-auto" size={20} />
                         </div>
                       </div>
                     </div>
