@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer/Footer';
 import { Link } from 'react-router-dom';
-import { Minus, Plus, Trash2 } from 'lucide-react';
+import { Minus, Plus, Trash2, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 type CartItem = {
@@ -69,10 +70,10 @@ const Cart = () => {
     <div className="flex flex-col min-h-screen bg-gray-50">
       <Header />
       
-      <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 md:px-8 pt-6 pb-16">
-        <h1 className="text-2xl font-bold mb-6">Shopping Cart</h1>
+      <main className="flex-grow page-container pt-4 sm:pt-6 pb-8 sm:pb-16">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6">Shopping Cart</h1>
         
-        <div className="flex flex-col lg:flex-row gap-6">
+        <div className="responsive-flex lg:gap-8">
           {/* Cart Items */}
           <div className="flex-grow">
             {cartItems.length > 0 ? (
@@ -80,8 +81,8 @@ const Cart = () => {
                 <div className="bg-white rounded-lg shadow-sm overflow-hidden">
                   <div className="space-y-0">
                     {cartItems.map((item, index) => (
-                      <div key={item.id} className={`flex flex-col sm:flex-row gap-4 p-6 ${index < cartItems.length - 1 ? 'border-b border-gray-200' : ''}`}>
-                        <div className="w-full sm:w-24 h-24 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden">
+                      <div key={item.id} className={`responsive-flex p-4 sm:p-6 ${index < cartItems.length - 1 ? 'border-b border-gray-200' : ''}`}>
+                        <div className="w-full sm:w-20 md:w-24 h-20 md:h-24 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden image-container">
                           <img 
                             src={item.image} 
                             alt={item.name} 
@@ -89,47 +90,47 @@ const Cart = () => {
                           />
                         </div>
                         
-                        <div className="flex-grow space-y-2">
-                          <div className="flex justify-between items-start">
-                            <div>
-                              <h3 className="font-semibold text-base">{item.name}</h3>
-                              <div className="text-sm text-gray-600 space-y-1">
+                        <div className="flex-grow space-y-2 min-w-0">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+                            <div className="min-w-0">
+                              <h3 className="font-semibold text-sm sm:text-base lg:text-lg truncate">{item.name}</h3>
+                              <div className="text-xs sm:text-sm text-gray-600 space-y-1">
                                 <p><span className="font-medium">Color:</span> {item.color}</p>
                                 <p><span className="font-medium">Size:</span> {item.size}</p>
                               </div>
                             </div>
-                            <div className="text-right">
-                              <div className="font-bold text-lg text-[#D92030]">${item.price.toFixed(2)}</div>
+                            <div className="text-left sm:text-right flex-shrink-0">
+                              <div className="font-bold text-lg sm:text-xl text-[#D92030]">${item.price.toFixed(2)}</div>
                             </div>
                           </div>
                           
-                          <p className="text-sm text-green-600 font-medium">{item.delivery}</p>
+                          <p className="text-xs sm:text-sm text-green-600 font-medium">{item.delivery}</p>
                           
-                          <div className="flex items-center justify-between pt-2">
-                            <div className="flex items-center gap-0 border border-gray-300 rounded-lg overflow-hidden">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-2">
+                            <div className="flex items-center gap-0 border border-gray-300 rounded-lg overflow-hidden w-fit">
                               <button 
                                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                className="px-3 py-1 hover:bg-gray-100 transition-colors"
+                                className="px-2 sm:px-3 py-1 hover:bg-gray-100 transition-colors btn-active"
                                 aria-label="Decrease quantity"
                               >
-                                <Minus size={16} />
+                                <Minus size={14} />
                               </button>
-                              <span className="px-4 py-1 font-medium border-x border-gray-300">{item.quantity}</span>
+                              <span className="px-3 sm:px-4 py-1 font-medium border-x border-gray-300 text-sm">{item.quantity}</span>
                               <button 
                                 onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                className="px-3 py-1 hover:bg-gray-100 transition-colors"
+                                className="px-2 sm:px-3 py-1 hover:bg-gray-100 transition-colors btn-active"
                                 aria-label="Increase quantity"
                               >
-                                <Plus size={16} />
+                                <Plus size={14} />
                               </button>
                             </div>
                             
                             <button 
                               onClick={() => removeItem(item.id)}
-                              className="flex items-center gap-2 text-red-600 hover:text-red-800 bg-red-50 hover:bg-red-100 px-3 py-1 rounded-lg transition-colors"
+                              className="flex items-center gap-2 text-red-600 hover:text-red-800 bg-red-50 hover:bg-red-100 px-3 py-1 rounded-lg transition-colors btn-active w-fit"
                             >
-                              <Trash2 size={14} />
-                              <span className="text-sm font-medium">Remove</span>
+                              <Trash2 size={12} />
+                              <span className="text-xs sm:text-sm font-medium">Remove</span>
                             </button>
                           </div>
                         </div>
@@ -138,16 +139,16 @@ const Cart = () => {
                   </div>
                 </div>
                 
-                <div className="text-right font-semibold text-lg my-6 bg-white rounded-lg shadow-sm p-4">
+                <div className="text-center sm:text-right font-semibold text-base sm:text-lg my-4 sm:my-6 bg-white rounded-lg shadow-sm p-4">
                   Subtotal ({cartItems.length} items): <span className="text-[#D92030]">${subtotal.toFixed(2)}</span>
                 </div>
               </>
             ) : (
-              <div className="text-center py-16 bg-white rounded-lg shadow-sm">
-                <h2 className="text-2xl font-bold mb-4">Your cart is empty</h2>
-                <p className="mb-8 text-gray-600">It looks like you haven't added anything to your cart yet.</p>
+              <div className="text-center py-12 sm:py-16 bg-white rounded-lg shadow-sm spacing-md">
+                <h2 className="text-xl sm:text-2xl font-bold mb-4">Your cart is empty</h2>
+                <p className="mb-6 sm:mb-8 text-gray-600 text-sm sm:text-base">It looks like you haven't added anything to your cart yet.</p>
                 <Link to="/">
-                  <Button className="bg-[#D92030] hover:bg-[#BC1C2A]">Continue Shopping</Button>
+                  <Button className="bg-[#D92030] hover:bg-[#BC1C2A] btn-active px-6 py-3">Continue Shopping</Button>
                 </Link>
               </div>
             )}
@@ -155,11 +156,11 @@ const Cart = () => {
           
           {/* Order Summary */}
           {cartItems.length > 0 && (
-            <div className="lg:w-[350px] flex-shrink-0">
-              <div className="bg-white rounded-lg shadow-lg p-6 sticky top-28">
-                <h2 className="font-bold text-lg mb-6">Order Summary</h2>
+            <div className="w-full lg:w-[300px] xl:w-[350px] flex-shrink-0">
+              <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 sticky top-28">
+                <h2 className="font-bold text-lg mb-4 sm:mb-6">Order Summary</h2>
                 
-                <div className="space-y-3 mb-6">
+                <div className="space-y-3 mb-4 sm:mb-6">
                   <div className="flex justify-between text-sm">
                     <span>Subtotal</span>
                     <span className="font-medium">${subtotal.toFixed(2)}</span>
@@ -172,13 +173,13 @@ const Cart = () => {
                     <span>Estimated Tax</span>
                     <span className="font-medium">${tax.toFixed(2)}</span>
                   </div>
-                  <div className="border-t-2 pt-3 flex justify-between font-bold text-lg">
+                  <div className="border-t-2 pt-3 flex justify-between font-bold text-base sm:text-lg">
                     <span>Total</span>
                     <span className="text-[#D92030]">${total.toFixed(2)}</span>
                   </div>
                 </div>
                 
-                <form onSubmit={applyPromoCode} className="mb-6">
+                <form onSubmit={applyPromoCode} className="mb-4 sm:mb-6">
                   <div className="flex gap-2">
                     <input
                       type="text"
@@ -189,43 +190,76 @@ const Cart = () => {
                     />
                     <button
                       type="submit"
-                      className="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition-colors font-medium text-sm"
+                      className="bg-gray-800 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-900 transition-colors font-medium text-sm btn-active"
                     >
                       Apply
                     </button>
                   </div>
                 </form>
                 
-                <Button className="w-full bg-[#D92030] hover:bg-[#BC1C2A] py-3 text-base font-semibold rounded-lg mb-6">
+                <Button className="w-full bg-[#D92030] hover:bg-[#BC1C2A] py-3 text-sm sm:text-base font-semibold rounded-lg mb-4 sm:mb-6 btn-active">
                   Proceed to Checkout
                 </Button>
                 
-                <div className="grid grid-cols-3 gap-4 border-t-2 pt-6">
-                  <div className="text-center">
-                    <div className="mx-auto mb-2 w-8 h-8 flex items-center justify-center">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12h14M12 5v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
+                {/* Categories Section with Responsive Layout */}
+                <div className="border-t-2 pt-4 sm:pt-6">
+                  <div className="responsive-grid-2 gap-4 mb-6">
+                    {/* Men's Category */}
+                    <div className="category-section h-32 sm:h-40">
+                      <img 
+                        src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=300&h=200" 
+                        alt="Men's Fashion" 
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="category-overlay">
+                        <h3 className="category-title text-sm sm:text-base">MEN'S</h3>
+                      </div>
                     </div>
-                    <p className="text-xs font-medium">FREE FAST DELIVERY</p>
+                    
+                    {/* Boxers & Shorts */}
+                    <div className="category-section h-32 sm:h-40">
+                      <img 
+                        src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=300&h=200" 
+                        alt="Boxers & Shorts" 
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="category-overlay">
+                        <div className="text-center">
+                          <p className="text-white text-xs font-medium mb-1">BOXERS & SHORTS</p>
+                          <ChevronDown className="text-white mx-auto" size={16} />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-center">
-                    <div className="mx-auto mb-2 w-8 h-8 flex items-center justify-center">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M9 9.35v5.3a.5.5 0 00.78.42l4.5-2.65a.5.5 0 000-.84l-4.5-2.65a.5.5 0 00-.78.42z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
+                  
+                  {/* Service Features */}
+                  <div className="responsive-grid-3 gap-3 text-center">
+                    <div>
+                      <div className="mx-auto mb-2 w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5 12h14M12 5v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                      <p className="text-xs font-medium">FREE FAST DELIVERY</p>
                     </div>
-                    <p className="text-xs font-medium">24/7 CUSTOMER SERVICE</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="mx-auto mb-2 w-8 h-8 flex items-center justify-center">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M12 16v-4M12 8h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
+                    <div>
+                      <div className="mx-auto mb-2 w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M9 9.35v5.3a.5.5 0 00.78.42l4.5-2.65a.5.5 0 000-.84l-4.5-2.65a.5.5 0 00-.78.42z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                      <p className="text-xs font-medium">24/7 CUSTOMER SERVICE</p>
                     </div>
-                    <p className="text-xs font-medium">MONEY BACK GUARANTEE</p>
+                    <div>
+                      <div className="mx-auto mb-2 w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M12 16v-4M12 8h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                      <p className="text-xs font-medium">MONEY BACK GUARANTEE</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -234,9 +268,9 @@ const Cart = () => {
         </div>
         
         {/* Top Selling Products Section */}
-        <section className="mt-16">
-          <h2 className="text-3xl font-bold text-center mb-12">TOP SELLING</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        <section className="mt-12 sm:mt-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">TOP SELLING</h2>
+          <div className="responsive-grid-4">
             {[
               {
                 name: 'Vertical Striped Shirt',
@@ -260,20 +294,20 @@ const Cart = () => {
                 image: 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/323635352eed4542ef83c5e9d41e0f884d43499e?placeholderIfAbsent=true'
               }
             ].map((product, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm p-4 hover:shadow-lg transition-shadow">
+              <div key={index} className="bg-white rounded-lg shadow-sm spacing-sm hover:shadow-lg transition-shadow">
                 <Link to="/product" className="block">
-                  <div className="aspect-square bg-gray-100 mb-4 rounded-lg overflow-hidden">
+                  <div className="aspect-square bg-gray-100 mb-3 sm:mb-4 rounded-lg overflow-hidden image-container">
                     <img 
                       src={product.image} 
                       alt={product.name} 
                       className="w-full h-full object-cover product-image" 
                     />
                   </div>
-                  <h3 className="text-sm font-semibold mb-2">{product.name}</h3>
+                  <h3 className="text-xs sm:text-sm font-semibold mb-2 line-clamp-2">{product.name}</h3>
                   <div className="flex items-center gap-2">
-                    <div className="text-lg font-bold text-[#D92030]">${product.price}</div>
+                    <div className="text-sm sm:text-lg font-bold text-[#D92030]">${product.price}</div>
                     {product.oldPrice && (
-                      <div className="text-sm text-gray-500 line-through">${product.oldPrice}</div>
+                      <div className="text-xs sm:text-sm text-gray-500 line-through">${product.oldPrice}</div>
                     )}
                   </div>
                 </Link>
@@ -283,9 +317,9 @@ const Cart = () => {
         </section>
 
         {/* NEW ARRIVALS Section */}
-        <section className="mt-16">
-          <h2 className="text-3xl font-bold text-center mb-12">NEW ARRIVALS</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        <section className="mt-12 sm:mt-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">NEW ARRIVALS</h2>
+          <div className="responsive-grid-4">
             {[
               {
                 name: 'T-SHIRT WITH TAPE DETAILS',
@@ -310,20 +344,20 @@ const Cart = () => {
                 image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=400&h=500'
               }
             ].map((product, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm p-4 hover:shadow-lg transition-shadow">
+              <div key={index} className="bg-white rounded-lg shadow-sm spacing-sm hover:shadow-lg transition-shadow">
                 <Link to="/product" className="block">
-                  <div className="aspect-square bg-gray-100 mb-4 rounded-lg overflow-hidden">
+                  <div className="aspect-square bg-gray-100 mb-3 sm:mb-4 rounded-lg overflow-hidden image-container">
                     <img 
                       src={product.image} 
                       alt={product.name} 
                       className="w-full h-full object-cover product-image" 
                     />
                   </div>
-                  <h3 className="text-sm font-semibold mb-2">{product.name}</h3>
+                  <h3 className="text-xs sm:text-sm font-semibold mb-2 line-clamp-2">{product.name}</h3>
                   <div className="flex items-center gap-2">
-                    <div className="text-lg font-bold text-[#D92030]">${product.price}</div>
+                    <div className="text-sm sm:text-lg font-bold text-[#D92030]">${product.price}</div>
                     {product.oldPrice && (
-                      <div className="text-sm text-gray-500 line-through">${product.oldPrice}</div>
+                      <div className="text-xs sm:text-sm text-gray-500 line-through">${product.oldPrice}</div>
                     )}
                   </div>
                 </Link>
@@ -331,40 +365,6 @@ const Cart = () => {
             ))}
           </div>
         </section>
-
-        {/* OUR HAPPY CUSTOMERS Section */}
-{/*         <section className="mt-16 bg-white rounded-lg p-8">
-          <h2 className="text-3xl font-bold text-center mb-12">OUR HAPPY CUSTOMERS</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                name: "Sarah M.",
-                rating: 5,
-                review: "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations."
-              },
-              {
-                name: "Alex K.",
-                rating: 5,
-                review: "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable."
-              },
-              {
-                name: "James L.",
-                rating: 5,
-                review: "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends."
-              }
-            ].map((customer, index) => (
-              <div key={index} className="border border-gray-200 rounded-lg p-6">
-                <div className="flex items-center mb-3">
-                  {[...Array(customer.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400">★</span>
-                  ))}
-                </div>
-                <h4 className="font-bold mb-2">{customer.name}</h4>
-                <p className="text-gray-600 text-sm">{customer.review}</p>
-              </div>
-            ))}
-          </div>
-        </section> */}
       </main>
       
       <Footer />
