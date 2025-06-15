@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer/Footer';
@@ -215,7 +216,7 @@ const Cart = () => {
                       </div>
                     </div>
                     
-                    {/* Boxers & Shorts */}
+                    {/* Boxers & Shorts with Icon */}
                     <div className="category-section h-40 sm:h-48">
                       <img 
                         src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=400&h=300" 
@@ -224,8 +225,8 @@ const Cart = () => {
                       />
                       <div className="category-overlay">
                         <div className="text-center">
-                          <p className="text-white text-xs font-medium mb-1">BOXERS & SHORTS</p>
-                          <ChevronDown className="text-white mx-auto" size={20} />
+                          <p className="text-white text-xs font-medium mb-2">BOXERS & SHORTS</p>
+                          <ChevronDown className="text-white mx-auto" size={24} strokeWidth={2} />
                         </div>
                       </div>
                     </div>
