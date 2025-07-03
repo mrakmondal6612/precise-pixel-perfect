@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { User, ShoppingBag, Heart, LogOut } from 'lucide-react';
+import { ScrollToTop } from '@/components/ui/scroll-to-top';
 
 const Account = () => {
   return (
@@ -236,6 +237,7 @@ const Account = () => {
       </main>
       
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

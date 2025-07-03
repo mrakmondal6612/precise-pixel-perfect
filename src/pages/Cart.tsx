@@ -5,6 +5,7 @@ import { Footer } from '@/components/layout/Footer/Footer';
 import { Link } from 'react-router-dom';
 import { Minus, Plus, Trash2, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ScrollToTop } from '@/components/ui/scroll-to-top';
 
 type CartItem = {
   id: string;
@@ -368,6 +369,7 @@ const Cart = () => {
       </main>
       
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

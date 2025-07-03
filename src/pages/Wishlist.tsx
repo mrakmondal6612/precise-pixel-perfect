@@ -5,6 +5,7 @@ import { Footer } from '@/components/layout/Footer/Footer';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Trash2, ShoppingCart } from 'lucide-react';
+import { ScrollToTop } from '@/components/ui/scroll-to-top';
 
 type WishlistItem = {
   id: string;
@@ -130,6 +131,7 @@ const Wishlist = () => {
       </main>
       
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

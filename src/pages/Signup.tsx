@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer/Footer';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { ScrollToTop } from '@/components/ui/scroll-to-top';
 
 const Signup = () => {
   const [firstName, setFirstName] = useState('');
@@ -211,6 +212,7 @@ const Signup = () => {
       </main>
       
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

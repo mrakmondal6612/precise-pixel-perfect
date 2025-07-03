@@ -5,6 +5,7 @@ import { Footer } from '@/components/layout/Footer/Footer';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
+import { ScrollToTop } from '@/components/ui/scroll-to-top';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -145,6 +146,7 @@ const Login = () => {
       </main>
       
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, User, ShoppingCart } from 'lucide-react';
+import { Menu, User, ShoppingCart, ChevronDown, MapPin } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
   NavigationMenu,
@@ -11,6 +11,12 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { cn } from '@/lib/utils';
 
 export const MainNav = () => {
@@ -18,6 +24,13 @@ export const MainNav = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchText, setSearchText] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState('India');
+  
+  const countries = [
+    'India', 'United States', 'United Kingdom', 'Canada', 'Australia', 
+    'Germany', 'France', 'Japan', 'South Korea', 'Singapore', 'UAE', 
+    'Brazil', 'Mexico', 'Italy', 'Spain', 'Netherlands', 'Sweden', 'Norway'
+  ];
   
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,7 +68,29 @@ export const MainNav = () => {
             <Menu size={24} />
           </button>
         ) : (
-          <div className="flex items-center gap-2 sm:gap-4 lg:gap-6 xl:gap-10 justify-center flex-1 max-w-none">
+          <div className="flex items-center gap-2 sm:gap-4 lg:gap-6 xl:gap-8 justify-center flex-1 max-w-none">
+            {/* Location Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 px-2 py-1 text-sm text-gray-700 hover:text-gray-900 transition-colors">
+                <MapPin className="w-4 h-4" />
+                <span className="hidden sm:block">{selectedCountry}</span>
+                <ChevronDown className="w-3 h-3" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-48 bg-white border border-gray-200 shadow-lg z-50">
+                {countries.map((country) => (
+                  <DropdownMenuItem
+                    key={country}
+                    onClick={() => setSelectedCountry(country)}
+                    className={`cursor-pointer px-3 py-2 text-sm hover:bg-gray-100 ${
+                      selectedCountry === country ? 'bg-gray-50 font-medium' : ''
+                    }`}
+                  >
+                    {country}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
             {/* Navigation Menu */}
             <NavigationMenu className="hidden md:block">
               <NavigationMenuList>

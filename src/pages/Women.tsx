@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer/Footer';
 import { Card } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
+import { ScrollToTop } from '@/components/ui/scroll-to-top';
 
 const Women = () => {
   const categories = [
@@ -216,6 +217,7 @@ const Women = () => {
       </main>
       
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
