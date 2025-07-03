@@ -8,9 +8,18 @@ import { Newsletter } from '@/components/sections/Newsletter';
 import { Footer } from '@/components/layout/Footer/Footer';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Link } from 'react-router-dom';
+import { ChevronDown } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Index = () => {
   const isMobile = useIsMobile();
+  
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
   
   return (
     <div>
@@ -20,6 +29,61 @@ const Index = () => {
         <Hero />
         <NewArrivals />
         <Categories />
+        
+        {/* Featured Products Section */}
+        <section className="w-full max-w-[1200px] px-4 md:px-8 py-12">
+          <h2 className="text-[#222828] text-center text-2xl md:text-[40px] font-bold leading-tight mb-8">
+            Featured Products
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+            {/* Striped Shirt */}
+            <div className="group cursor-pointer transform transition-transform duration-300 hover:scale-105">
+              <div className="aspect-[4/5] overflow-hidden rounded-lg bg-gray-100">
+                <img
+                  src="/lovable-uploads/66969790-cb99-46f5-a0c8-2c9520436139.png"
+                  alt="Striped shirt and red boxers collection"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+              </div>
+              <div className="mt-4 text-center">
+                <h3 className="text-lg font-semibold text-gray-800">Premium Collection</h3>
+                <p className="text-sm text-gray-600 mt-1">Stylish striped shirts & comfortable boxers</p>
+              </div>
+            </div>
+            
+            {/* Product Description */}
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">
+                  Quality & Comfort Combined
+                </h3>
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  Discover our premium collection featuring comfortable striped shirts and quality boxers. 
+                  Each piece is crafted with attention to detail and designed for modern lifestyles.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <h4 className="font-semibold text-gray-800">Premium Quality</h4>
+                  <p className="text-sm text-gray-600 mt-1">High-grade materials</p>
+                </div>
+                <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <h4 className="font-semibold text-gray-800">Comfort Fit</h4>
+                  <p className="text-sm text-gray-600 mt-1">All-day comfort</p>
+                </div>
+              </div>
+              
+              <Button 
+                onClick={scrollToTop}
+                className="w-full bg-[#D92030] hover:bg-[#BC1C2A] text-white py-3 rounded-lg font-semibold transition-colors duration-300"
+              >
+                Explore Collection
+                <ChevronDown className="ml-2 w-4 h-4 rotate-180" />
+              </Button>
+            </div>
+          </div>
+        </section>
         
         {/* Indianwear Banner */}
         <div className="rounded flex min-h-[350px] w-full max-w-[1405px] flex-col overflow-hidden items-center justify-center mt-[63px] max-md:max-w-full max-md:mt-10">
@@ -129,6 +193,15 @@ const Index = () => {
         {/* <Newsletter /> */}
       </main>
       <Footer />
+      
+      {/* Scroll to Top Button */}
+      <Button
+        onClick={scrollToTop}
+        className="fixed bottom-6 right-6 z-50 w-12 h-12 p-0 bg-[#D92030] hover:bg-[#BC1C2A] text-white rounded-full shadow-lg transition-all duration-300 hover:shadow-xl"
+        aria-label="Scroll to top"
+      >
+        <ChevronDown className="w-5 h-5 rotate-180" />
+      </Button>
     </div>
     </div>
   );
