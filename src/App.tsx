@@ -28,6 +28,7 @@ import Clothes from "./pages/Clothes";
 import Accessories from "./pages/Accessories";
 import Collections from "./pages/Collections";
 import FeaturedCollection from "./pages/FeaturedCollection";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -65,6 +66,7 @@ const App = () => (
           <Route path="/accessories" element={<Accessories />} />
           <Route path="/collections" element={<Collections />} />
           <Route path="/featured-collection" element={<FeaturedCollection />} />
+          <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

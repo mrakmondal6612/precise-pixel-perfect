@@ -2,6 +2,8 @@
 import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer/Footer';
+import { ReviewSection } from '@/components/ReviewSection';
+import { ScrollToTop } from '@/components/ui/scroll-to-top';
 
 const NewArrivals = () => {
   return (
@@ -25,10 +27,16 @@ const NewArrivals = () => {
               </div>
             ))}
           </div>
+          
+          {/* Reviews Section */}
+          <div className="mt-16">
+            <ReviewSection />
+          </div>
         </div>
       </main>
       
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
