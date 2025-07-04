@@ -195,16 +195,18 @@ const Admin = () => {
                     onChange={(e) => setNewProduct({...newProduct, image: e.target.value})}
                     placeholder="Image URL or upload file"
                   />
-                  <Button type="button" variant="outline" className="shrink-0">
-                    <Upload className="w-4 h-4 mr-2" />
+                  <div className="relative">
+                    <Button type="button" variant="outline" className="shrink-0">
+                      <Upload className="w-4 h-4 mr-2" />
+                      Upload
+                    </Button>
                     <input
                       type="file"
                       accept="image/*"
                       onChange={handleImageUpload}
                       className="absolute inset-0 opacity-0 cursor-pointer"
                     />
-                    Upload
-                  </Button>
+                  </div>
                 </div>
               </div>
 

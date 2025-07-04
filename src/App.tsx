@@ -28,6 +28,7 @@ import Clothes from "./pages/Clothes";
 import Accessories from "./pages/Accessories";
 import Collections from "./pages/Collections";
 import FeaturedCollection from "./pages/FeaturedCollection";
+import Product from "./pages/Product";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
@@ -54,6 +55,7 @@ const App = () => (
           <Route path="/kids" element={<Kids />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/on-sale" element={<OnSale />} />
+          <Route path="/sale" element={<OnSale />} />
           <Route path="/new-arrivals" element={<NewArrivals />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/track-order" element={<TrackOrder />} />
@@ -67,6 +69,8 @@ const App = () => (
           <Route path="/collections" element={<Collections />} />
           <Route path="/featured-collection" element={<FeaturedCollection />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/product" element={<Product />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

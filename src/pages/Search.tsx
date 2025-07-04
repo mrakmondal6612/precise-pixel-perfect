@@ -22,7 +22,10 @@ interface Product {
 }
 
 const Search = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('q') || '';
+  });
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedBrand, setSelectedBrand] = useState('all');
   const [priceRange, setPriceRange] = useState('all');

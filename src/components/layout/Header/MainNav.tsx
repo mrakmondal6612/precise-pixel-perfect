@@ -34,8 +34,10 @@ export const MainNav = () => {
   
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Searching for:", searchText);
-    // Implement search functionality
+    if (searchText.trim()) {
+      // Navigate to search page with query parameter
+      window.location.href = `/search?q=${encodeURIComponent(searchText.trim())}`;
+    }
   };
   
   const toggleMenu = () => {
@@ -161,6 +163,13 @@ export const MainNav = () => {
                     Brands
                   </Link>
                 </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link to="/admin" className={cn(
+                    "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-2 lg:px-4 py-2 text-sm lg:text-base text-black hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                  )}>
+                    Admin
+                  </Link>
+                </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
             
@@ -218,6 +227,9 @@ export const MainNav = () => {
             </li>
             <li>
               <Link to="/brands" className="text-lg" onClick={() => setIsMenuOpen(false)}>Brands</Link>
+            </li>
+            <li>
+              <Link to="/admin" className="text-lg" onClick={() => setIsMenuOpen(false)}>Admin</Link>
             </li>
             <li className="mt-4">
               <form onSubmit={handleSearch} className="bg-[rgba(240,240,240,1)] flex gap-3 overflow-hidden rounded-[62px] px-4 py-3 w-full">
