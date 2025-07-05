@@ -24,13 +24,6 @@ export const MainNav = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchText, setSearchText] = useState('');
-  const [selectedCountry, setSelectedCountry] = useState('India');
-  
-  const countries = [
-    'India', 'United States', 'United Kingdom', 'Canada', 'Australia', 
-    'Germany', 'France', 'Japan', 'South Korea', 'Singapore', 'UAE', 
-    'Brazil', 'Mexico', 'Italy', 'Spain', 'Netherlands', 'Sweden', 'Norway'
-  ];
   
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,27 +64,6 @@ export const MainNav = () => {
           </button>
         ) : (
           <div className="flex items-center gap-2 sm:gap-4 lg:gap-6 xl:gap-8 justify-center flex-1 max-w-none">
-            {/* Location Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-1 px-2 py-1 text-sm text-gray-700 hover:text-gray-900 transition-colors">
-                <MapPin className="w-4 h-4" />
-                <span className="hidden sm:block">{selectedCountry}</span>
-                <ChevronDown className="w-3 h-3" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-48 bg-white border border-gray-200 shadow-lg z-50">
-                {countries.map((country) => (
-                  <DropdownMenuItem
-                    key={country}
-                    onClick={() => setSelectedCountry(country)}
-                    className={`cursor-pointer px-3 py-2 text-sm hover:bg-gray-100 ${
-                      selectedCountry === country ? 'bg-gray-50 font-medium' : ''
-                    }`}
-                  >
-                    {country}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
             
             {/* Navigation Menu */}
             <NavigationMenu className="hidden md:block">
@@ -163,13 +135,6 @@ export const MainNav = () => {
                     Brands
                   </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link to="/admin" className={cn(
-                    "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-2 lg:px-4 py-2 text-sm lg:text-base text-black hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                  )}>
-                    Admin
-                  </Link>
-                </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
             
@@ -194,6 +159,9 @@ export const MainNav = () => {
               <Link to="/account" aria-label="User account" className={location.pathname === '/account' ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
                 <User size={20} className="sm:w-6 sm:h-6 hover:opacity-80 transition-opacity" />
               </Link>
+              <Link to="/cart" aria-label="Shopping cart" className={isCartPage ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
+                <ShoppingCart size={20} className={`sm:w-6 sm:h-6 hover:opacity-80 transition-opacity ${isCartPage ? 'opacity-70' : ''}`} />
+              </Link>
               <Link to="/wishlist" aria-label="Wishlist" className={isWishlistPage ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
                 <img 
                   src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/ac715f0dd7f9aaef44ddb1306739d29ec63e93de?placeholderIfAbsent=true" 
@@ -201,8 +169,8 @@ export const MainNav = () => {
                   alt="Wishlist" 
                 />
               </Link>
-              <Link to="/cart" aria-label="Shopping cart" className={isCartPage ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
-                <ShoppingCart size={20} className={`sm:w-6 sm:h-6 hover:opacity-80 transition-opacity ${isCartPage ? 'opacity-70' : ''}`} />
+              <Link to="/admin" aria-label="Admin panel" className={location.pathname === '/admin' ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
+                <User size={20} className="sm:w-6 sm:h-6 hover:opacity-80 transition-opacity text-red-600" />
               </Link>
             </div>
           </div>
@@ -228,9 +196,6 @@ export const MainNav = () => {
             <li>
               <Link to="/brands" className="text-lg" onClick={() => setIsMenuOpen(false)}>Brands</Link>
             </li>
-            <li>
-              <Link to="/admin" className="text-lg" onClick={() => setIsMenuOpen(false)}>Admin</Link>
-            </li>
             <li className="mt-4">
               <form onSubmit={handleSearch} className="bg-[rgba(240,240,240,1)] flex gap-3 overflow-hidden rounded-[62px] px-4 py-3 w-full">
                 <img 
@@ -252,6 +217,10 @@ export const MainNav = () => {
                 <User size={24} className="mb-1" />
                 <span className="text-sm">Account</span>
               </Link>
+              <Link to="/cart" aria-label="Shopping cart" className={`flex flex-col items-center ${isCartPage ? 'text-[#D92030]' : ''}`} onClick={() => setIsMenuOpen(false)}>
+                <ShoppingCart size={24} className="mb-1" />
+                <span className="text-sm">Cart</span>
+              </Link>
               <Link to="/wishlist" aria-label="Wishlist" className="flex flex-col items-center" onClick={() => setIsMenuOpen(false)}>
                 <img 
                   src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/ac715f0dd7f9aaef44ddb1306739d29ec63e93de?placeholderIfAbsent=true" 
@@ -260,9 +229,9 @@ export const MainNav = () => {
                 />
                 <span className="text-sm">Wishlist</span>
               </Link>
-              <Link to="/cart" aria-label="Shopping cart" className={`flex flex-col items-center ${isCartPage ? 'text-[#D92030]' : ''}`} onClick={() => setIsMenuOpen(false)}>
-                <ShoppingCart size={24} className="mb-1" />
-                <span className="text-sm">Cart</span>
+              <Link to="/admin" aria-label="Admin panel" className="flex flex-col items-center" onClick={() => setIsMenuOpen(false)}>
+                <User size={24} className="mb-1 text-red-600" />
+                <span className="text-sm">Admin</span>
               </Link>
             </li>
           </ul>
