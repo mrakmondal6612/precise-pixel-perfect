@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const ProductCard = ({ image, title, category, price }) => {
+const ProductCard = ({ image, title, category, price, id }) => {
   return (
-    <div className="w-full bg-white mx-auto pb-[17px] max-md:mt-[15px]">
+    <Link to={`/product/${id}`} className="w-full bg-white mx-auto pb-[17px] max-md:mt-[15px] cursor-pointer transform transition-transform duration-300 hover:scale-105">
       <div className="bg-[rgba(255,235,231,1)] flex items-center justify-center max-md:mr-[5px]">
         <img
           src={image}
@@ -21,31 +22,35 @@ const ProductCard = ({ image, title, category, price }) => {
           {price}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
 export const NewArrivals = () => {
   const products = [
     {
+      id: 'new-1',
       image: 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/639ea10294150931c436ba9a4b2f0e7af3d89ef1?placeholderIfAbsent=true',
       title: 'Looney Tunes: Super Genius',
       category: 'Oversized T-Shirts',
       price: '₹ 1299'
     },
     {
+      id: 'new-2',
       image: 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/742a7fa671fcc9bd7fc20b29aca893d6c6b08df0?placeholderIfAbsent=true',
       title: 'Solids: Pristin',
       category: 'Men Joggers',
       price: '₹ 1699'
     },
     {
+      id: 'new-3',
       image: 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/1333128ba1905776d285bd7cf9593004cfeda25f?placeholderIfAbsent=true',
       title: 'Jurassic World: Dino Park',
       category: 'Oversized T-Shirts',
       price: '₹ 1049'
     },
     {
+      id: 'new-4',
       image: 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/900b60ad07e2ffb6286d5bdfcf42caeb7a8548a1?placeholderIfAbsent=true',
       title: 'Batman: Wayne Industries',
       category: 'Oversized Shirts',
@@ -66,9 +71,9 @@ export const NewArrivals = () => {
             </div>
           ))}
         </div>
-        <button className="text-neutral-50 self-center rounded bg-[rgba(217,32,48,1)] gap-2.5 text-base font-medium mt-6 px-12 py-4">
+        <Link to="/shop" className="text-neutral-50 self-center rounded bg-[rgba(217,32,48,1)] gap-2.5 text-base font-medium mt-6 px-12 py-4 hover:bg-[rgba(217,32,48,0.9)] transition-colors">
           View All Products
-        </button>
+        </Link>
       </div>
     </section>
   );

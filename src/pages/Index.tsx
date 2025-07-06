@@ -25,7 +25,7 @@ const Index = () => {
   return (
     <div>
       <Header />
-    <div className="felx flex-col overflow-hidden items-center bg-white ">
+    <div className="flex flex-col overflow-hidden items-center bg-white ">
       <main className="w-full max-w-[1440px] flex flex-col items-center">
         <Hero />
         <NewArrivals />
@@ -38,7 +38,7 @@ const Index = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
             {/* Striped Shirt */}
-            <div className="group cursor-pointer transform transition-transform duration-300 hover:scale-105">
+            <Link to="/product/1" className="group cursor-pointer transform transition-transform duration-300 hover:scale-105">
               <div className="aspect-[4/5] overflow-hidden rounded-lg bg-gray-100">
                 <img
                   src="/lovable-uploads/66969790-cb99-46f5-a0c8-2c9520436139.png"
@@ -50,7 +50,7 @@ const Index = () => {
                 <h3 className="text-lg font-semibold text-gray-800">Premium Collection</h3>
                 <p className="text-sm text-gray-600 mt-1">Stylish striped shirts & comfortable boxers</p>
               </div>
-            </div>
+            </Link>
             
             {/* Product Description */}
             <div className="space-y-6">
@@ -98,12 +98,13 @@ const Index = () => {
         {/* Collection Grid */}
         <div className="max-w-[1080px] justify-center flex min-h-[356px] w-full gap-5 overflow-hidden flex-wrap mt-[119px] pt-[5px] pb-4 max-md:max-w-full max-md:mt-10">
           {['https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/a3eb5973361b70df8423fb8187c106fa1cccf9ee?placeholderIfAbsent=true', 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/1ae9ee2293ad29eef209760dacb27c2cfcc587ac?placeholderIfAbsent=true', 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/195176e2222a7c41d44bd7662e7402d74c61a9a0?placeholderIfAbsent=true', 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/323635352eed4542ef83c5e9d41e0f884d43499e?placeholderIfAbsent=true'].map((url, index) => (
-            <img
-              key={index}
-              src={url}
-              className="aspect-[0.75] object-contain w-[200px] rounded min-w-60 shrink grow"
-              alt={`Collection item ${index + 1}`}
-            />
+            <Link key={index} to={`/product/${index + 2}`} className="cursor-pointer transform transition-transform duration-300 hover:scale-105">
+              <img
+                src={url}
+                className="aspect-[0.75] object-contain w-[200px] rounded min-w-60 shrink grow"
+                alt={`Collection item ${index + 1}`}
+              />
+            </Link>
           ))}
         </div>
 
@@ -116,24 +117,25 @@ const Index = () => {
             <div className="rounded flex w-full flex-col overflow-hidden items-center justify-center">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/7087fa7cadbd89e8fc148d4f01d42317d99eaccb?placeholderIfAbsent=true"
-                className="aspect-[3.42] object-contain w-[1200px] max-w-[1200px]"
+                className="aspect-[3.42] object-contain w-full max-w-[1200px]"
                 alt="Hot Boy Fit collection"
               />
             </div>
           </div>
-          <div className="max-w-[1080px] justify-center flex min-h-[340px] w-full gap-6 overflow-hidden flex-wrap ml-[195px] mt-24 py-[5px]">
+          <div className="max-w-[1080px] justify-center flex min-h-[340px] w-full gap-6 overflow-hidden flex-wrap ml-0 md:ml-[195px] mt-24 py-[5px] px-4 md:px-0">
             {[
                 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/f3a59d3c18ef931719e92290738cf5332a8d0bb8?placeholderIfAbsent=true', 
                 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/a3778de0b6fa7c76cfd3fcebbe3550413b4e6770?placeholderIfAbsent=true', 
                 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/eb643d7fe0ae4338ccb6e5788c39e2bcd9311740?placeholderIfAbsent=true', 
                 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/e0f1ccf92e2dce8c07fc31ea713741f0624b1ac9?placeholderIfAbsent=true'
               ].map((url, index) => (
-              <img
-                key={index}
-                src={url}
-                className="aspect-[0.75] object-contain w-[250px] rounded min-w-60 shrink grow"
-                alt={`Hot Boy Fit item ${index + 1}`}
-              />
+              <Link key={index} to={`/product/${index + 6}`} className="cursor-pointer transform transition-transform duration-300 hover:scale-105">
+                <img
+                  src={url}
+                  className="aspect-[0.75] object-contain w-[200px] md:w-[250px] rounded min-w-60 shrink grow"
+                  alt={`Hot Boy Fit item ${index + 1}`}
+                />
+              </Link>
             ))}
           </div>
         </section>
