@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, User, ShoppingCart, ChevronDown, MapPin } from 'lucide-react';
@@ -20,10 +19,19 @@ import {
 import { cn } from '@/lib/utils';
 
 export const MainNav = () => {
+  // Simple auth check: look for JWT token in localStorage
+  const isLoggedIn = typeof window !== 'undefined' && !!localStorage.getItem('token');
   const isMobile = useIsMobile();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchText, setSearchText] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState('India');
+  
+  const countries = [
+    'India', 'United States', 'United Kingdom', 'Canada', 'Australia', 
+    'Germany', 'France', 'Japan', 'South Korea', 'Singapore', 'UAE', 
+    'Brazil', 'Mexico', 'Italy', 'Spain', 'Netherlands', 'Sweden', 'Norway'
+  ];
   
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,6 +72,27 @@ export const MainNav = () => {
           </button>
         ) : (
           <div className="flex items-center gap-2 sm:gap-4 lg:gap-6 xl:gap-8 justify-center flex-1 max-w-none">
+            {/* Location Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 px-2 py-1 text-sm text-gray-700 hover:text-gray-900 transition-colors">
+                <MapPin className="w-4 h-4" />
+                <span className="hidden sm:block">{selectedCountry}</span>
+                <ChevronDown className="w-3 h-3" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-48 bg-white border border-gray-200 shadow-lg z-50">
+                {countries.map((country) => (
+                  <DropdownMenuItem
+                    key={country}
+                    onClick={() => setSelectedCountry(country)}
+                    className={`cursor-pointer px-3 py-2 text-sm hover:bg-gray-100 ${
+                      selectedCountry === country ? 'bg-gray-50 font-medium' : ''
+                    }`}
+                  >
+                    {country}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             
             {/* Navigation Menu */}
             <NavigationMenu className="hidden md:block">
@@ -135,6 +164,16 @@ export const MainNav = () => {
                     Brands
                   </Link>
                 </NavigationMenuItem>
+                {/* Show Admin only if logged in */}
+                {isLoggedIn && (
+                  <NavigationMenuItem>
+                    <Link to="/admin" className={cn(
+                      "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-2 lg:px-4 py-2 text-sm lg:text-base text-black hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    )}>
+                      Admin
+                    </Link>
+                  </NavigationMenuItem>
+                )}
               </NavigationMenuList>
             </NavigationMenu>
             
@@ -154,24 +193,29 @@ export const MainNav = () => {
               />
             </form>
             
-            {/* Icons Section */}
+            {/* Icons Section with Admin Panel */}
             <div className="flex gap-2 sm:gap-3 lg:gap-3.5 items-center flex-shrink-0">
-              <Link to="/account" aria-label="User account" className={location.pathname === '/account' ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
-                <User size={20} className="sm:w-6 sm:h-6 hover:opacity-80 transition-opacity" />
-              </Link>
-              <Link to="/cart" aria-label="Shopping cart" className={isCartPage ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
-                <ShoppingCart size={20} className={`sm:w-6 sm:h-6 hover:opacity-80 transition-opacity ${isCartPage ? 'opacity-70' : ''}`} />
-              </Link>
-              <Link to="/wishlist" aria-label="Wishlist" className={isWishlistPage ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
-                <img 
-                  src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/ac715f0dd7f9aaef44ddb1306739d29ec63e93de?placeholderIfAbsent=true" 
-                  className="aspect-[1] object-contain w-5 sm:w-6 shrink-0 hover:opacity-80 transition-opacity" 
-                  alt="Wishlist" 
-                />
-              </Link>
-              <Link to="/admin" aria-label="Admin panel" className={location.pathname === '/admin' ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
-                <User size={20} className="sm:w-6 sm:h-6 hover:opacity-80 transition-opacity text-red-600" />
-              </Link>
+              {isLoggedIn && (
+                <>
+                  <Link to="/account" aria-label="User account" className={location.pathname === '/account' ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
+                    <User size={20} className="sm:w-6 sm:h-6 hover:opacity-80 transition-opacity" />
+                  </Link>
+                  <Link to="/cart" aria-label="Shopping cart" className={isCartPage ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
+                    <ShoppingCart size={20} className={`sm:w-6 sm:h-6 hover:opacity-80 transition-opacity ${isCartPage ? 'opacity-70' : ''}`} />
+                  </Link>
+                  <Link to="/wishlist" aria-label="Wishlist" className={isWishlistPage ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
+                    <img 
+                      src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/ac715f0dd7f9aaef44ddb1306739d29ec63e93de?placeholderIfAbsent=true" 
+                      className="aspect-[1] object-contain w-5 sm:w-6 shrink-0 hover:opacity-80 transition-opacity" 
+                      alt="Wishlist" 
+                    />
+                  </Link>
+                  <Link to="/admin" aria-label="Admin Panel" className={location.pathname === '/admin' ? "relative after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-[#D92030] after:rounded-full" : ""}>
+                    <span className="hidden sm:inline text-base font-semibold">Admin</span>
+                    <span className="sm:hidden" title="Admin">A</span>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         )}
@@ -196,6 +240,29 @@ export const MainNav = () => {
             <li>
               <Link to="/brands" className="text-lg" onClick={() => setIsMenuOpen(false)}>Brands</Link>
             </li>
+            {isLoggedIn && (
+              <li className="flex gap-4 mt-4 justify-around">
+                <Link to="/account" aria-label="User account" className="flex flex-col items-center" onClick={() => setIsMenuOpen(false)}>
+                  <User size={24} className="mb-1" />
+                  <span className="text-sm">Account</span>
+                </Link>
+                <Link to="/cart" aria-label="Shopping cart" className={`flex flex-col items-center ${isCartPage ? 'text-[#D92030]' : ''}`} onClick={() => setIsMenuOpen(false)}>
+                  <ShoppingCart size={24} className="mb-1" />
+                  <span className="text-sm">Cart</span>
+                </Link>
+                <Link to="/wishlist" aria-label="Wishlist" className="flex flex-col items-center" onClick={() => setIsMenuOpen(false)}>
+                  <img 
+                    src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/ac715f0dd7f9aaef44ddb1306739d29ec63e93de?placeholderIfAbsent=true" 
+                    className="aspect-[1] object-contain w-6 mb-1" 
+                    alt="Wishlist" 
+                  />
+                  <span className="text-sm">Wishlist</span>
+                </Link>
+                <Link to="/admin" aria-label="Admin Panel" className="flex flex-col items-center" onClick={() => setIsMenuOpen(false)}>
+                  <span className="text-base font-semibold">Admin</span>
+                </Link>
+              </li>
+            )}
             <li className="mt-4">
               <form onSubmit={handleSearch} className="bg-[rgba(240,240,240,1)] flex gap-3 overflow-hidden rounded-[62px] px-4 py-3 w-full">
                 <img 
@@ -211,28 +278,6 @@ export const MainNav = () => {
                   className="bg-transparent outline-none w-full"
                 />
               </form>
-            </li>
-            <li className="flex gap-4 mt-4 justify-around">
-              <Link to="/account" aria-label="User account" className="flex flex-col items-center" onClick={() => setIsMenuOpen(false)}>
-                <User size={24} className="mb-1" />
-                <span className="text-sm">Account</span>
-              </Link>
-              <Link to="/cart" aria-label="Shopping cart" className={`flex flex-col items-center ${isCartPage ? 'text-[#D92030]' : ''}`} onClick={() => setIsMenuOpen(false)}>
-                <ShoppingCart size={24} className="mb-1" />
-                <span className="text-sm">Cart</span>
-              </Link>
-              <Link to="/wishlist" aria-label="Wishlist" className="flex flex-col items-center" onClick={() => setIsMenuOpen(false)}>
-                <img 
-                  src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/ac715f0dd7f9aaef44ddb1306739d29ec63e93de?placeholderIfAbsent=true" 
-                  className="aspect-[1] object-contain w-6 mb-1" 
-                  alt="Wishlist" 
-                />
-                <span className="text-sm">Wishlist</span>
-              </Link>
-              <Link to="/admin" aria-label="Admin panel" className="flex flex-col items-center" onClick={() => setIsMenuOpen(false)}>
-                <User size={24} className="mb-1 text-red-600" />
-                <span className="text-sm">Admin</span>
-              </Link>
             </li>
           </ul>
         </div>
