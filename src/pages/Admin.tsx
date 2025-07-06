@@ -103,7 +103,11 @@ const Admin = () => {
       <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 md:px-8 py-10">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2 flex items-center gap-2">
-            <Package className="w-8 h-8" />
+            <img 
+              src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=32&h=32&fit=crop&crop=center" 
+              alt="Admin" 
+              className="w-8 h-8 rounded-lg object-cover"
+            />
             Admin Dashboard
           </h1>
           <p className="text-muted-foreground">Manage your products and inventory</p>
