@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Heart, ShoppingCart, Star, Plus, Minus } from 'lucide-react';
+import { toast } from 'sonner';
 
 const Product = () => {
   const { id } = useParams();
@@ -36,6 +37,132 @@ const Product = () => {
       inStock: true,
       rating: 4.5,
       reviewCount: 128
+    },
+    '2': {
+      id: '2',
+      name: 'Vertical Striped Shirt',
+      brand: 'ZIXX',
+      price: 29.99,
+      oldPrice: 44.99,
+      description: 'Classic vertical striped shirt with modern fit. Perfect for both casual and semi-formal occasions.',
+      images: [
+        'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/a3eb5973361b70df8423fb8187c106fa1cccf9ee?placeholderIfAbsent=true',
+        'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600',
+        'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'
+      ],
+      sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+      colors: ['Blue', 'White', 'Navy'],
+      inStock: true,
+      rating: 4.2,
+      reviewCount: 95
+    },
+    '3': {
+      id: '3',
+      name: 'Orange Graphic T-shirt',
+      brand: 'ZIXX',
+      price: 19.99,
+      oldPrice: 24.99,
+      description: 'Vibrant orange graphic t-shirt with unique design. Perfect for adding color to your wardrobe.',
+      images: [
+        'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/1ae9ee2293ad29eef209760dacb27c2cfcc587ac?placeholderIfAbsent=true',
+        'https://images.unsplash.com/photo-1583743814966-8936f37f8036?w=600',
+        'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'
+      ],
+      sizes: ['XS', 'S', 'M', 'L', 'XL'],
+      colors: ['Orange', 'Black', 'White'],
+      inStock: true,
+      rating: 4.1,
+      reviewCount: 67
+    },
+    '4': {
+      id: '4',
+      name: 'Loose Fit Bermuda Shorts',
+      brand: 'ZIXX',
+      price: 34.99,
+      oldPrice: 44.99,
+      description: 'Comfortable loose fit bermuda shorts. Perfect for summer and casual occasions.',
+      images: [
+        'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/195176e2222a7c41d44bd7662e7402d74c61a9a0?placeholderIfAbsent=true',
+        'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600',
+        'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600'
+      ],
+      sizes: ['S', 'M', 'L', 'XL'],
+      colors: ['Khaki', 'Navy', 'Black', 'Olive'],
+      inStock: true,
+      rating: 4.3,
+      reviewCount: 112
+    },
+    '5': {
+      id: '5',
+      name: 'Faded Skinny Jeans',
+      brand: 'ZIXX',
+      price: 49.99,
+      oldPrice: 64.99,
+      description: 'Premium faded skinny jeans with modern cut. Comfortable and stylish for everyday wear.',
+      images: [
+        'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/323635352eed4542ef83c5e9d41e0f884d43499e?placeholderIfAbsent=true',
+        'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600',
+        'https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=600'
+      ],
+      sizes: ['28', '30', '32', '34', '36', '38'],
+      colors: ['Light Blue', 'Dark Blue', 'Black'],
+      inStock: true,
+      rating: 4.6,
+      reviewCount: 187
+    },
+    '6': {
+      id: '6',
+      name: 'Oversized Black Tee',
+      brand: 'ZIXX',
+      price: 39.99,
+      oldPrice: 49.99,
+      description: 'Comfortable oversized black t-shirt. Perfect for streetwear and casual looks.',
+      images: [
+        'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/f3a59d3c18ef931719e92290738cf5332a8d0bb8?placeholderIfAbsent=true',
+        'https://images.unsplash.com/photo-1583743814966-8936f37f8036?w=600',
+        'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'
+      ],
+      sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+      colors: ['Black', 'White', 'Gray'],
+      inStock: true,
+      rating: 4.4,
+      reviewCount: 143
+    },
+    '7': {
+      id: '7',
+      name: 'Gray Classic Fit T-shirt',
+      brand: 'ZIXX',
+      price: 24.99,
+      oldPrice: 34.99,
+      description: 'Classic gray t-shirt with comfortable fit. A wardrobe essential for any occasion.',
+      images: [
+        'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/a3778de0b6fa7c76cfd3fcebbe3550413b4e6770?placeholderIfAbsent=true',
+        'https://images.unsplash.com/photo-1583743814966-8936f37f8036?w=600',
+        'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'
+      ],
+      sizes: ['XS', 'S', 'M', 'L', 'XL'],
+      colors: ['Gray', 'Black', 'White', 'Navy'],
+      inStock: true,
+      rating: 4.2,
+      reviewCount: 89
+    },
+    '8': {
+      id: '8',
+      name: 'Urban Streetwear Tee',
+      brand: 'ZIXX',
+      price: 32.99,
+      oldPrice: 42.99,
+      description: 'Urban style streetwear t-shirt with unique design. Perfect for making a statement.',
+      images: [
+        'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/eb643d7fe0ae4338ccb6e5788c39e2bcd9311740?placeholderIfAbsent=true',
+        'https://images.unsplash.com/photo-1583743814966-8936f37f8036?w=600',
+        'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'
+      ],
+      sizes: ['S', 'M', 'L', 'XL'],
+      colors: ['Black', 'White', 'Red'],
+      inStock: true,
+      rating: 4.5,
+      reviewCount: 76
     },
     'new-1': {
       id: 'new-1',
@@ -122,6 +249,49 @@ const Product = () => {
     } else if (action === 'decrease' && quantity > 1) {
       setQuantity(prev => prev - 1);
     }
+  };
+
+  const handleAddToCart = () => {
+    if (!selectedSize || !selectedColor) {
+      toast.error('Please select size and color');
+      return;
+    }
+
+    // Get existing cart items from localStorage
+    const existingCart = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    
+    // Create new cart item
+    const cartItem = {
+      id: `${product.id}-${selectedSize}-${selectedColor}`,
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.images[0],
+      size: selectedSize,
+      color: selectedColor,
+      quantity: quantity,
+      brand: product.brand
+    };
+
+    // Check if item already exists in cart
+    const existingItemIndex = existingCart.findIndex(
+      (item: any) => item.productId === product.id && 
+                    item.size === selectedSize && 
+                    item.color === selectedColor
+    );
+
+    if (existingItemIndex > -1) {
+      // Update quantity if item exists
+      existingCart[existingItemIndex].quantity += quantity;
+    } else {
+      // Add new item
+      existingCart.push(cartItem);
+    }
+
+    // Save to localStorage
+    localStorage.setItem('cartItems', JSON.stringify(existingCart));
+    
+    toast.success(`Added ${product.name} to cart!`);
   };
 
   return (
@@ -259,6 +429,7 @@ const Product = () => {
               <Button 
                 className="flex-1 bg-destructive hover:bg-destructive/90"
                 disabled={!selectedSize || !selectedColor}
+                onClick={handleAddToCart}
               >
                 <ShoppingCart className="w-4 h-4 mr-2" />
                 Add to Cart

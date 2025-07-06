@@ -1,48 +1,41 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer/Footer';
 import { Link } from 'react-router-dom';
 import { Minus, Plus, Trash2, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollToTop } from '@/components/ui/scroll-to-top';
+import { toast } from 'sonner';
 
 type CartItem = {
   id: string;
+  productId: string;
   name: string;
   color: string;
   size: string;
   price: number;
   quantity: number;
   image: string;
-  delivery: string;
+  brand: string;
 };
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    {
-      id: '1',
-      name: 'ZIXX Classic Fit T-shirt',
-      color: 'Gray',
-      size: 'XL',
-      price: 49.99,
-      quantity: 1,
-      image: 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/a3778de0b6fa7c76cfd3fcebbe3550413b4e6770?placeholderIfAbsent=true',
-      delivery: 'Delivery by Tue, 20th May'
-    },
-    {
-      id: '2',
-      name: 'ZIXX Oversized Tee',
-      color: 'Black',
-      size: 'L',
-      price: 39.99,
-      quantity: 1,
-      image: 'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/f3a59d3c18ef931719e92290738cf5332a8d0bb8?placeholderIfAbsent=true',
-      delivery: 'Delivery by Thu, 22nd May'
-    }
-  ]);
-
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [promoCode, setPromoCode] = useState('');
+
+  // Load cart items from localStorage on component mount
+  useEffect(() => {
+    const savedCartItems = localStorage.getItem('cartItems');
+    if (savedCartItems) {
+      setCartItems(JSON.parse(savedCartItems));
+    }
+  }, []);
+
+  // Save cart items to localStorage whenever cartItems changes
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const updateQuantity = (id: string, newQuantity: number) => {
     if (newQuantity < 1) return;
@@ -51,10 +44,12 @@ const Cart = () => {
         item.id === id ? {...item, quantity: newQuantity} : item
       )
     );
+    toast.success('Quantity updated');
   };
 
   const removeItem = (id: string) => {
     setCartItems(prev => prev.filter(item => item.id !== id));
+    toast.success('Item removed from cart');
   };
 
   const applyPromoCode = (e: React.FormEvent) => {
@@ -96,6 +91,7 @@ const Cart = () => {
                             <div className="min-w-0">
                               <h3 className="font-semibold text-sm sm:text-base lg:text-lg truncate">{item.name}</h3>
                               <div className="text-xs sm:text-sm text-gray-600 space-y-1">
+                                <p><span className="font-medium">Brand:</span> {item.brand}</p>
                                 <p><span className="font-medium">Color:</span> {item.color}</p>
                                 <p><span className="font-medium">Size:</span> {item.size}</p>
                               </div>
@@ -105,7 +101,7 @@ const Cart = () => {
                             </div>
                           </div>
                           
-                          <p className="text-xs sm:text-sm text-green-600 font-medium">{item.delivery}</p>
+                          <p className="text-xs sm:text-sm text-green-600 font-medium">Delivery by {new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</p>
                           
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-2">
                             <div className="flex items-center gap-0 border border-gray-300 rounded-lg overflow-hidden w-fit">
