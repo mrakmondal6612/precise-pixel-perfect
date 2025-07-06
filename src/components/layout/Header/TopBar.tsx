@@ -2,13 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Menu, MapPin, ChevronDown } from 'lucide-react';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Menu } from 'lucide-react';
 
 export const TopBar = () => {
   const location = useLocation();
@@ -20,13 +14,6 @@ export const TopBar = () => {
   
   const isMobile = useIsMobile();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState('India');
-  
-  const countries = [
-    'India', 'United States', 'United Kingdom', 'Canada', 'Australia', 
-    'Germany', 'France', 'Japan', 'South Korea', 'Singapore', 'UAE', 
-    'Brazil', 'Mexico', 'Italy', 'Spain', 'Netherlands', 'Sweden', 'Norway'
-  ];
 
   return (
     <div className="bg-[rgba(34,40,40,1)] flex h-[48px] w-full flex-col items-stretch justify-center px-3 md:px-6 lg:px-80">
@@ -89,30 +76,12 @@ export const TopBar = () => {
         </nav>
         
         <div className="z-10 ml-auto flex items-center gap-1 md:gap-2.5 text-white">
-          {/* Location Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 md:gap-[5px] text-xs md:text-sm font-bold whitespace-nowrap leading-[1.1] hover:opacity-80 transition-opacity">
-              <img src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/c20d732439d086a64aed116707cf0bd74a991145?placeholderIfAbsent=true" className="aspect-[0.56] object-contain w-2 md:w-2.5 shrink-0" alt="Location icon" />
-              <div className="text-white text-xs md:text-sm font-bold leading-[15.4px]">
-                {selectedCountry}
-              </div>
-              <ChevronDown className="w-3 h-3 text-white" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-48 bg-white border border-gray-200 shadow-lg z-50">
-              {countries.map((country) => (
-                <DropdownMenuItem
-                  key={country}
-                  onClick={() => setSelectedCountry(country)}
-                  className={`cursor-pointer px-3 py-2 text-sm hover:bg-gray-100 ${
-                    selectedCountry === country ? 'bg-gray-50 font-medium' : ''
-                  }`}
-                >
-                  {country}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-          
+          <div className="flex items-center gap-1 md:gap-[5px] text-xs md:text-sm font-bold whitespace-nowrap leading-[1.1]">
+            <img src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/c20d732439d086a64aed116707cf0bd74a991145?placeholderIfAbsent=true" className="aspect-[0.56] object-contain w-2 md:w-2.5 shrink-0" alt="Location icon" />
+            <div className="text-white text-xs md:text-sm font-bold leading-[15.4px]">
+              India
+            </div>
+          </div>
           <div className="flex items-center gap-1 md:gap-2 text-[10px] md:text-[13px] font-normal uppercase">
             <Link to="/track-order" className="flex items-center hover:underline">
               <img src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/691ed78c6049932f5280dd59e41110f3ce0d07be?placeholderIfAbsent=true" className="aspect-[1] object-contain w-4 md:w-5 shrink-0" alt="Track order icon" />
