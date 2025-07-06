@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer/Footer';
 import { ReviewSection } from '@/components/ReviewSection';
@@ -10,30 +11,108 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Heart, ShoppingCart, Star, Plus, Minus } from 'lucide-react';
 
 const Product = () => {
+  const { id } = useParams();
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
-  // Mock product data
-  const product = {
-    id: '1',
-    name: 'ZIXX Premium Cotton T-Shirt',
-    brand: 'ZIXX',
-    price: 49.99,
-    oldPrice: 69.99,
-    description: 'Experience ultimate comfort with our premium cotton t-shirt. Made from 100% organic cotton, this shirt offers exceptional softness and durability. Perfect for casual wear or layering.',
-    images: [
-      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600',
-      'https://images.unsplash.com/photo-1583743814966-8936f37f8036?w=600',
-      'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600'
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: ['Black', 'White', 'Navy', 'Gray', 'Red'],
-    inStock: true,
-    rating: 4.5,
-    reviewCount: 128
+  // Mock product database
+  const products = {
+    '1': {
+      id: '1',
+      name: 'ZIXX Premium Cotton T-Shirt',
+      brand: 'ZIXX',
+      price: 49.99,
+      oldPrice: 69.99,
+      description: 'Experience ultimate comfort with our premium cotton t-shirt. Made from 100% organic cotton, this shirt offers exceptional softness and durability. Perfect for casual wear or layering.',
+      images: [
+        '/lovable-uploads/66969790-cb99-46f5-a0c8-2c9520436139.png',
+        'https://images.unsplash.com/photo-1583743814966-8936f37f8036?w=600',
+        'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600'
+      ],
+      sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+      colors: ['Black', 'White', 'Navy', 'Gray', 'Red'],
+      inStock: true,
+      rating: 4.5,
+      reviewCount: 128
+    },
+    'new-1': {
+      id: 'new-1',
+      name: 'Looney Tunes: Super Genius',
+      brand: 'ZIXX',
+      price: 1299,
+      oldPrice: 1499,
+      description: 'Comfortable oversized t-shirt featuring your favorite Looney Tunes character. Perfect for casual wear and everyday comfort.',
+      images: [
+        'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/639ea10294150931c436ba9a4b2f0e7af3d89ef1?placeholderIfAbsent=true',
+        'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600',
+        'https://images.unsplash.com/photo-1583743814966-8936f37f8036?w=600'
+      ],
+      sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+      colors: ['Black', 'White', 'Gray'],
+      inStock: true,
+      rating: 4.3,
+      reviewCount: 89
+    },
+    'new-2': {
+      id: 'new-2',
+      name: 'Solids: Pristin',
+      brand: 'ZIXX',
+      price: 1699,
+      oldPrice: 1999,
+      description: 'Comfortable joggers perfect for lounging or light workouts. Made with premium cotton blend for ultimate comfort.',
+      images: [
+        'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/742a7fa671fcc9bd7fc20b29aca893d6c6b08df0?placeholderIfAbsent=true',
+        'https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=600',
+        'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600'
+      ],
+      sizes: ['S', 'M', 'L', 'XL'],
+      colors: ['Black', 'Navy', 'Gray', 'Charcoal'],
+      inStock: true,
+      rating: 4.6,
+      reviewCount: 156
+    },
+    'new-3': {
+      id: 'new-3',
+      name: 'Jurassic World: Dino Park',
+      brand: 'ZIXX',
+      price: 1049,
+      oldPrice: 1299,
+      description: 'Show your love for dinosaurs with this comfortable oversized t-shirt featuring Jurassic World design.',
+      images: [
+        'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/1333128ba1905776d285bd7cf9593004cfeda25f?placeholderIfAbsent=true',
+        'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600',
+        'https://images.unsplash.com/photo-1583743814966-8936f37f8036?w=600'
+      ],
+      sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+      colors: ['Black', 'White', 'Green'],
+      inStock: true,
+      rating: 4.4,
+      reviewCount: 203
+    },
+    'new-4': {
+      id: 'new-4',
+      name: 'Batman: Wayne Industries',
+      brand: 'ZIXX',
+      price: 1499,
+      oldPrice: 1799,
+      description: 'Premium oversized shirt featuring Batman Wayne Industries design. Perfect for superhero fans.',
+      images: [
+        'https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/900b60ad07e2ffb6286d5bdfcf42caeb7a8548a1?placeholderIfAbsent=true',
+        'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600',
+        'https://images.unsplash.com/photo-1583743814966-8936f37f8036?w=600'
+      ],
+      sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+      colors: ['Black', 'Navy', 'Gray'],
+      inStock: true,
+      rating: 4.7,
+      reviewCount: 134
+    }
   };
+
+  // Get product by ID or default to first product
+  const product = products[id as keyof typeof products] || products['1'];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
