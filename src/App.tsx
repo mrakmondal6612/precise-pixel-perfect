@@ -30,6 +30,7 @@ import Collections from "./pages/Collections";
 import FeaturedCollection from "./pages/FeaturedCollection";
 import Product from "./pages/Product";
 import Admin from "./pages/Admin";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
 
@@ -71,6 +72,7 @@ const App = () => (
           <Route path="/collections" element={<Collections />} />
           <Route path="/featured-collection" element={<FeaturedCollection />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/product" element={<Product />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

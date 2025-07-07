@@ -121,6 +121,9 @@ export const TopBar = () => {
             <Link to="/contact" className="text-white text-[10px] md:text-[13px] font-normal leading-[19.5px] hover:underline ml-1 md:ml-2">
               Contact Us
             </Link>
+            <Link to="/auth" className="text-white text-[10px] md:text-[13px] font-normal leading-[19.5px] hover:underline ml-1 md:ml-2">
+              Login
+            </Link>
           </div>
         </div>
       </div>
