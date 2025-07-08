@@ -2,12 +2,14 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Menu, MapPin, ChevronDown } from 'lucide-react';
+import { Menu, MapPin, ChevronDown, User, LogOut } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
 export const TopBar = () => {
@@ -21,6 +23,7 @@ export const TopBar = () => {
   const isMobile = useIsMobile();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('India');
+  const { user, signOut, loading } = useAuth();
   
   const countries = [
     'India', 'United States', 'United Kingdom', 'Canada', 'Australia', 
@@ -113,7 +116,7 @@ export const TopBar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
           
-          <div className="flex items-center gap-1 md:gap-2 text-[10px] md:text-[13px] font-normal uppercase">
+            <div className="flex items-center gap-1 md:gap-2 text-[10px] md:text-[13px] font-normal uppercase">
             <Link to="/track-order" className="flex items-center hover:underline">
               <img src="https://cdn.builder.io/api/v1/image/assets/70ad6d2d96f744648798836a6706b9db/691ed78c6049932f5280dd59e41110f3ce0d07be?placeholderIfAbsent=true" className="aspect-[1] object-contain w-4 md:w-5 shrink-0" alt="Track order icon" />
               <span className="hidden md:inline ml-1">Track Order</span>
@@ -121,9 +124,49 @@ export const TopBar = () => {
             <Link to="/contact" className="text-white text-[10px] md:text-[13px] font-normal leading-[19.5px] hover:underline ml-1 md:ml-2">
               Contact Us
             </Link>
-            <Link to="/auth" className="text-white text-[10px] md:text-[13px] font-normal leading-[19.5px] hover:underline ml-1 md:ml-2">
-              Login
-            </Link>
+            
+            {/* User Authentication Section */}
+            {loading ? (
+              <div className="text-white text-[10px] md:text-[13px] font-normal leading-[19.5px] ml-1 md:ml-2">
+                Loading...
+              </div>
+            ) : user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-1 text-white text-[10px] md:text-[13px] font-normal leading-[19.5px] hover:opacity-80 transition-opacity ml-1 md:ml-2">
+                  <User className="w-3 h-3" />
+                  <span className="hidden md:inline">
+                    {user.user_metadata?.display_name || user.email?.split('@')[0] || 'Account'}
+                  </span>
+                  <ChevronDown className="w-3 h-3" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-48 bg-white border border-gray-200 shadow-lg z-50" align="end">
+                  <DropdownMenuItem asChild>
+                    <Link to="/account" className="flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-100 cursor-pointer">
+                      <User className="w-4 h-4" />
+                      My Account
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/wishlist" className="flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-100 cursor-pointer">
+                      <User className="w-4 h-4" />
+                      Wishlist
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={signOut}
+                    className="flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-100 cursor-pointer text-red-600"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link to="/auth" className="text-white text-[10px] md:text-[13px] font-normal leading-[19.5px] hover:underline ml-1 md:ml-2">
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </div>

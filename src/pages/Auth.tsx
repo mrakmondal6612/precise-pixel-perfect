@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer/Footer';
@@ -6,9 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { ScrollToTop } from '@/components/ui/scroll-to-top';
-import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { User } from '@supabase/supabase-js';
+import { useAuth } from '@/hooks/useAuth';
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -18,22 +17,8 @@ const Auth = () => {
   const [displayName, setDisplayName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
+  const { user, signIn, signUp } = useAuth();
   const { toast } = useToast();
-
-  useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setUser(session?.user ?? null);
-      }
-    );
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
 
   // Redirect if already authenticated
   if (user) {
@@ -46,10 +31,7 @@ const Auth = () => {
 
     try {
       if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
+        const { error } = await signIn(email, password);
 
         if (error) throw error;
 
@@ -66,16 +48,7 @@ const Auth = () => {
           throw new Error('Password must be at least 6 characters');
         }
 
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: `${window.location.origin}/`,
-            data: {
-              display_name: displayName || email.split('@')[0],
-            }
-          }
-        });
+        const { error } = await signUp(email, password, displayName);
 
         if (error) throw error;
 
@@ -87,7 +60,7 @@ const Auth = () => {
     } catch (error: any) {
       toast({
         title: "Error",
-        description: error.message,
+        description: error.message || 'An unexpected error occurred',
         variant: "destructive",
       });
     } finally {
